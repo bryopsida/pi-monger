@@ -5,7 +5,7 @@
     state: latest
 - name: Download SCAP Content
   ansible.builtin.get_url:
-    url: https://www.open-scap.org/security-policies/scap-security-guide/openscap-content/ssg-debderived-{{ ansible_facts['distribution_version'] }}.tar.bz2
+    url: https://github.com/ComplianceAsCode/content/releases/download/v{{ hardened_system_scap_content_version }}/scap-security-guide-{{ hardened_system_scap_content_version }}.tar.bz2
     dest: /tmp/ssg-debderived-{{ ansible_facts['distribution_version'] }}.tar.bz2
     owner: root
     group: root
