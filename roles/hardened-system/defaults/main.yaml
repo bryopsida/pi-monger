@@ -6,6 +6,6 @@ hardened_system_scap_content_version: "0.1.75"
 # the profile in the scap data source the system will adhere to
 # you can inspect the profiles available with the following command:
 # oscap info /usr/share/xml/scap/ssg/content/scap-security-guide-{{ version }}/ssg-ubuntu2204-ds.xml
-hardened_system_profile: xccdf_org.ssgproject.content_profile_cis_level1_server
+hardened_system_profile: xccdf_org.ssgproject.content_profile_cis_level2_server
 # the sha256 checksum of the scap content zip file
 hardened_system_scap_content_checksum: 988fa15d0a8131537b6ab995dd96ffa57db36352c4142bc1a5eb95f0a50b86fa
