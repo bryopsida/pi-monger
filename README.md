@@ -21,3 +21,11 @@ Actively maintain means the plays are idempotent and intended to be run on a cro
 - [ ] Implement update system role
 - [ ] Implement auto pull role that sets up recurring ansible-pulls to the same play on a cron
 - [ ] Implement nodejs role for installing and maintaining a node.js lts version
+
+## Running initial ansible-pull
+
+```sh
+sudo ansible-pull -U https://github.com/bryopsida/pi-monger.git plays/<pick your falvor>.yaml
+```
+
+If you are cloning your own repo and running it locally, replace the url after -U.
