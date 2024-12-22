@@ -6,9 +6,9 @@
   loop:
     - apt-transport-https
     - ca-certificates
-- name: SCAP [Ubuntu 24.04]
+- name: SCAP Ubuntu 24.04
   ansible.builtin.include_tasks: ubuntu24.yaml
   when: ansible_facts['os_family'] == 'Debian' and ansible_facts['distribution'] == 'Ubuntu' and ansible_facts['distribution_version'] == '24.04'
-- name: SCAP [Ubuntu 22.04]
+- name: SCAP Ubuntu 22.04
   ansible.builtin.include_tasks: ubuntu22.yaml
   when: ansible_facts['os_family'] == 'Debian' and ansible_facts['distribution'] == 'Ubuntu' and ansible_facts['distribution_version'] == '22.04'

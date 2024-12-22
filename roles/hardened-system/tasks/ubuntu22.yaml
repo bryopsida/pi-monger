@@ -3,3 +3,15 @@
   ansible.builtin.package:
     name: libopenscap8
     state: latest
+- name: Download SCAP Content
+  ansible.builtin.get_url:
+    url: https://www.open-scap.org/security-policies/scap-security-guide/openscap-content/ssg-debderived-{{ ansible_facts['distribution_version'] }}.tar.bz2
+    dest: /tmp/ssg-debderived-{{ ansible_facts['distribution_version'] }}.tar.bz2
+    owner: root
+    group: root
+    mode: '0644'
+- name: Extract SCAP Content
+  ansible.builtin.unarchive:
+    src: /tmp/ssg-debderived-{{ ansible_facts['distribution_version'] }}.tar.bz2
+    dest: /usr/share/xml/scap/ssg/content
+    remote_src: yes
