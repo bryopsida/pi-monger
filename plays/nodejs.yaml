@@ -4,7 +4,6 @@
     - name: Include Basics
       ansible.builtin.import_tasks:
         file: basic.yaml
----
 - name: Node
   hosts: all
   roles:
