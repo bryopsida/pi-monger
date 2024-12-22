@@ -1,0 +1,5 @@
+---
+- name: Harden
+  hosts: all
+  roles:
+    - hardened-system

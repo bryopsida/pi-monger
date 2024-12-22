@@ -7,5 +7,4 @@
     day: "{{ auto_pull_cron_job_day }}"
     month: "{{ auto_pull_cron_job_month }}"
     weekday: "{{ auto_pull_cron_job_weekday }}"
-    job: "{{ auto_pull_cron_job_job }}"
-  when: ansible_facts.env.SUDO_COMMAND is defined
+    job: "/usr/bin/ansible-pull -U {{ auto_pull_repo_url }} -C {{ auto_pull_repo_version }} -i {{ auto_pull_inventory }} {{ auto_pull_play }}"
