@@ -1,0 +1,5 @@
+---
+- name: Install Oscap
+  ansible.builtin.package:
+    name: libopenscap8
+    state: latest

@@ -1,0 +1,5 @@
+---
+- name: Install OSCAP
+  ansible.builtin.package:
+    name: ssg-debderived
+    state: latest
