@@ -2,5 +2,5 @@
 - name: Basic
   hosts: all
   roles:
-    - update-system
+    - updated-system
     - auto-pull
