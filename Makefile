@@ -1,0 +1,12 @@
+.PHONY: test-targets
+test-targets:
+	multipass launch --name test-target22 22.04
+	multipass launch --name test-target24 24.04
+
+.PHONY: delete-targets
+delete-targets:
+	multipass delete --purge test-target22
+	multipass delete --purge test-target24
+
+.PHONY: test
+test: test-targets
