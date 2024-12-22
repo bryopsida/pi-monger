@@ -33,7 +33,7 @@
 - name: Scan System
   changed_when: false
   register: scan_results
-  no_log: true
+  failed_when: scan_results.rc != 0 and scan_results.rc != 2
   ansible.builtin.command:
     cmd: oscap xccdf eval --profile {{ hardened_system_profile }} --results-arf /dev/shm/oscap_tmp/scan_results.xml /usr/share/xml/scap/ssg/content/scap-security-guide-{{ hardened_system_scap_content_version }}/ssg-ubuntu2204-ds.xml
 
