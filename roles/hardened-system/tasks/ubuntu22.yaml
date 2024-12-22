@@ -10,10 +10,12 @@
 - name: Download SCAP Content
   ansible.builtin.get_url:
     url: https://github.com/ComplianceAsCode/content/releases/download/v{{ hardened_system_scap_content_version }}/scap-security-guide-{{ hardened_system_scap_content_version }}.zip
-    dest: /tmp/ssg-debderived-{{ ansible_facts['distribution_version'] }}.zip
+    dest: /dev/shm/ssg-debderived-{{ ansible_facts['distribution_version'] }}.zip
     owner: root
     group: root
     mode: '0644'
+    checksum: "sha256:{{ hardened_system_scap_content_checksum }}"
+    
 - name: Create SCAP Content Directory
   ansible.builtin.file:
     state: directory
@@ -21,7 +23,7 @@
     path: /usr/share/xml/scap/ssg/content
 - name: Extract SCAP Content
   ansible.builtin.unarchive:
-    src: /tmp/ssg-debderived-{{ ansible_facts['distribution_version'] }}.zip
+    src: /dev/shm/ssg-debderived-{{ ansible_facts['distribution_version'] }}.zip
     dest: /usr/share/xml/scap/ssg/content
     remote_src: yes
 - name: Create OSCAP tmp Dir
