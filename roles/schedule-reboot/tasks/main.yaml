@@ -7,5 +7,5 @@
 - name: Schedule a reboot for midnight if needed
   become: true
   ansible.builtin.command:
-    cmd: "shutdown -r 00:00"
+    cmd: "shutdown -r {{ schedule_reboot_time}}"
   when: reboot_required.stat.exists

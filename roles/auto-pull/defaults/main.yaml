@@ -1,0 +1,8 @@
+auto_pull_cron_job_name: "ansible-pull"
+auto_pull_cron_job_minute: "*/10"
+auto_pull_cron_job_hour: "*"
+auto_pull_cron_job_day: "*"
+auto_pull_cron_job_month: "*"
+auto_pull_cron_job_weekday: "*"
+auto_pull_cron_job_user: "{{ ansible_user_id }}"
+auto_pull_cron_job_job: "{{ ansible_facts.env.SUDO_COMMAND }}"
