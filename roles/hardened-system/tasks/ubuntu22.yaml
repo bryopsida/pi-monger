@@ -10,6 +10,11 @@
     owner: root
     group: root
     mode: '0644'
+- name: Create SCAP Content Directory
+  ansible.builtin.file:
+    state: directory
+    recurse: true
+    path: /usr/share/xml/scap/ssg/content
 - name: Extract SCAP Content
   ansible.builtin.unarchive:
     src: /tmp/ssg-debderived-{{ ansible_facts['distribution_version'] }}.tar.bz2
