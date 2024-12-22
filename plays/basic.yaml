@@ -1,0 +1,6 @@
+---
+name: Basic
+hosts: all
+roles:
+  - updated-system
+  - auto-pull
