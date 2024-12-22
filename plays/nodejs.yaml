@@ -1,6 +1,6 @@
 ---
 - name: Basic
-  ansible.builtin.import_playbook: plays/basic.yaml
+  ansible.builtin.import_playbook: basic.yaml
 - name: Node
   hosts: all
   roles:
