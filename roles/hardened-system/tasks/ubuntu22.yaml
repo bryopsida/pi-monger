@@ -44,5 +44,5 @@
     cmd: oscap xccdf generate fix --profile {{ hardened_system_profile }} --template urn:xccdf:fix:script:ansible --output /dev/shm/oscap_tmp/remediation.yaml  /usr/share/xml/scap/ssg/content/scap-security-guide-{{ hardened_system_scap_content_version }}/ssg-ubuntu2204-ds.xml
 - name: Run Remediations
   ansible.builtin.command:
-    cmd: ansible-playbook -i "localhost," /dev/shm/oscap_tmp/remediation.yaml
+    cmd: ansible-playbook -i "localhost," --connection=local /dev/shm/oscap_tmp/remediation.yaml
   when: remediation_results.changed
