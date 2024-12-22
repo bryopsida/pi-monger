@@ -1,0 +1,3 @@
+---
+nodejs_version: 22.x
+nodejs_packages_state: present

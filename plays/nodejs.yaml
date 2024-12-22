@@ -5,8 +5,7 @@
       ansible.builtin.import_tasks:
         file: basic.yaml
 ---
-name: Node
-hosts: all
-roles:
-  - updated-system
-  - auto-pull
+- name: Node
+  hosts: all
+  roles:
+    - nodejs
