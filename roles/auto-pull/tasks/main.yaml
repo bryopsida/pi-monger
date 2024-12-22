@@ -8,3 +8,4 @@
     month: "{{ auto_pull_cron_job_month }}"
     weekday: "{{ auto_pull_cron_job_weekday }}"
     job: "{{ auto_pull_cron_job_job }}"
+  when: ansible_facts.env.SUDO_COMMAND is defined
