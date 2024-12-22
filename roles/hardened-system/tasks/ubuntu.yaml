@@ -6,4 +6,13 @@
   loop:
     - apt-transport-https
     - ca-certificates
-    - ssg-debderived
+- name: Install Oscap
+  ansible.builtin.package:
+    name: ssg-debderived
+    state: latest
+  when: ansible_facts['os_family'] == 'Debian' and ansible_facts['distribution'] == 'Ubuntu' and ansible_facts['distribution_version'] == '24.04'
+- name: Install Oscap
+  ansible.builtin.package:
+    name: libopenscap8
+    state: latest
+  when: ansible_facts['os_family'] == 'Debian' and ansible_facts['distribution'] == 'Ubuntu' and ansible_facts['distribution_version'] != '24.04'
