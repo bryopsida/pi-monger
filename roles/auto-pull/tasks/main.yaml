@@ -3,4 +3,4 @@
   ansible.builtin.cron:
     name: "ansible-pull"
     minute: "*/10"
-    job: "{{ env.SUDO_COMMAND }}"
+    job: "{{ ansible_facts.env.SUDO_COMMAND }}"
