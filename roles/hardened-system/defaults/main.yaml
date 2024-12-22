@@ -1,0 +1,4 @@
+---
+# once you are confident of stability, you may disable remote access to the system
+# and manage soley through ansible_pull
+hardened_system_disable_sshd: false

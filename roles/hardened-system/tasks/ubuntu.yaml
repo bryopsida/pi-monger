@@ -1,0 +1,9 @@
+---
+- name: Install Security Packages
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: latest
+  loop:
+    - apt-transport-https
+    - ca-certificates
+    - ssg-debderived

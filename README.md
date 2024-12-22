@@ -8,7 +8,8 @@ Actively maintain means the plays are idempotent and intended to be run on a cro
 ## Pre-Requisites (tested)
 
 - RPI4
-- Ubuntu Server 22.04 and 24.04
+- Ubuntu Server 22.04 or 24.04
+  - If Ubuntu 24.04 is used, oscap hardening is not yet supported
 - Ansible installed
 - Initial ansible-pull run with sudo
 - Network connectivity to github to pull this repo, or network connectivity to a clone of this repo
