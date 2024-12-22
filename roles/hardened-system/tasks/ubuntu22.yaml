@@ -43,4 +43,5 @@
   ansible.builtin.command:
     cmd: oscap xccdf generate fix --profile {{ hardened_system_profile }} --template urn:xccdf:fix:script:ansible --output /dev/shm/oscap_tmp/remediation.yaml  /usr/share/xml/scap/ssg/content/scap-security-guide-{{ hardened_system_scap_content_version }}/ssg-ubuntu2204-ds.xml
 - name: Run Remediations
-  ansible.builtin.include_role: /dev/shm/oscap_tmp/remediation.yaml
+  ansible.builtin.include_role:
+    name: /dev/shm/oscap_tmp/remediation.yaml
