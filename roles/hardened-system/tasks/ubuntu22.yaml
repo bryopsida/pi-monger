@@ -6,10 +6,11 @@
   loop:
     - libopenscap8
     - unzip
+    - bzip2
 - name: Download SCAP Content
   ansible.builtin.get_url:
-    url: https://github.com/ComplianceAsCode/content/releases/download/v{{ hardened_system_scap_content_version }}/scap-security-guide-{{ hardened_system_scap_content_version }}.tar.bz2
-    dest: /tmp/ssg-debderived-{{ ansible_facts['distribution_version'] }}.tar.bz2
+    url: https://github.com/ComplianceAsCode/content/releases/download/v{{ hardened_system_scap_content_version }}/scap-security-guide-{{ hardened_system_scap_content_version }}.zip
+    dest: /tmp/ssg-debderived-{{ ansible_facts['distribution_version'] }}.zip
     owner: root
     group: root
     mode: '0644'
@@ -20,6 +21,6 @@
     path: /usr/share/xml/scap/ssg/content
 - name: Extract SCAP Content
   ansible.builtin.unarchive:
-    src: /tmp/ssg-debderived-{{ ansible_facts['distribution_version'] }}.tar.bz2
+    src: /tmp/ssg-debderived-{{ ansible_facts['distribution_version'] }}.zip
     dest: /usr/share/xml/scap/ssg/content
     remote_src: yes
