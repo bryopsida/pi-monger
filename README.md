@@ -15,6 +15,7 @@ Actively maintain means the plays are idempotent and intended to be run on a cro
 
 ## TODOs
 
+- [ ] Add test pipeline where pull runs on main, and then tries to run the pull on incoming branch, use multipass
 - [ ] Add instructions to run initial ansible-pull
 - [ ] Add instructions on how to add ansible-pull to sdcard cloud-init to run ansible-pull on first boot
 - [ ] Implement update system role
