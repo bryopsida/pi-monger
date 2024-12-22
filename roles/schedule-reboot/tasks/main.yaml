@@ -4,7 +4,7 @@
     path: /var/run/reboot-required
   register: reboot_required
 
-- name: Schedule a reboot for midnight if needed
+- name: Schedule a reboot if needed
   become: true
   ansible.builtin.command:
     cmd: "shutdown -r {{ schedule_reboot_time}}"

@@ -1,5 +1,5 @@
 ---
-- name: Create cron job to re-run ansible-pull every 10 minutes
+- name: Create cron job to re-run ansible-pull on configured interval
   ansible.builtin.cron:
     name: "{{ auto_pull_cron_job_name }}"
     minute: "{{ auto_pull_cron_job_minute }}"
