@@ -24,3 +24,5 @@
     src: /tmp/ssg-debderived-{{ ansible_facts['distribution_version'] }}.zip
     dest: /usr/share/xml/scap/ssg/content
     remote_src: yes
+- name: Remediate System
+  ansible.builtin.command: oscap xccdf eval --remediate --profile {{ hardened_system_profile }} /usr/share/xml/scap/ssg/content/scap-security-guide-{{ hardened_system_scap_content_version }}/ssg-ubuntu2204-ds.xml
