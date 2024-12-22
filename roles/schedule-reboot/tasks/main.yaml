@@ -1,0 +1,11 @@
+---
+- name: Check if the system needs to be rebooted
+  ansible.builtin.stat:
+    path: /var/run/reboot-required
+  register: reboot_required
+
+- name: Schedule a reboot for midnight if needed
+  become: true
+  ansible.builtin.command:
+    cmd: "shutdown /r /f /t 0 0:00"
+  when: reboot_required.stat.exists

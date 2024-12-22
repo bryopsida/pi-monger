@@ -3,4 +3,5 @@
   hosts: all
   roles:
     - updated-system
+    - schedule-reboot
     - auto-pull
