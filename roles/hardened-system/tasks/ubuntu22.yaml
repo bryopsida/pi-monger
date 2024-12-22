@@ -32,13 +32,15 @@
     path: /dev/shm/oscap_tmp
 - name: Scan System
   changed_when: false
+  register: scan_results
+  no_log: true
   ansible.builtin.command:
     cmd: oscap xccdf eval --profile {{ hardened_system_profile }} --results-arf /dev/shm/oscap_tmp/scan_results.xml /usr/share/xml/scap/ssg/content/scap-security-guide-{{ hardened_system_scap_content_version }}/ssg-ubuntu2204-ds.xml
-    register: scan_results
-    no_log: true
+
 - name: Generate Remediations
-  changed_when: /dev/shm/oscap_tmp/remediation.xml is changed 
+  changed_when: /dev/shm/oscap_tmp/remediation.xml is changed
+  register: remediation_results
+  no_log: true
   ansible.builtin.command:
     cmd: oscap xccdf generate fix --profile {{ hardened_system_profile }} --template urn:xccdf:fix:script:ansible --output /dev/shm/oscap_tmp/remediation.xml  /usr/share/xml/scap/ssg/content/scap-security-guide-{{ hardened_system_scap_content_version }}/ssg-ubuntu2204-ds.xml
-    register: remediation_results
-    no_log: true
+
