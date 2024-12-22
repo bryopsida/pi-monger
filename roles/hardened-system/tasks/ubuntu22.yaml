@@ -1,8 +1,11 @@
 ---
 - name: Install Oscap
   ansible.builtin.package:
-    name: libopenscap8
+    name: "{{ item}}"
     state: latest
+  loop:
+    - libopenscap8
+    - unzip
 - name: Download SCAP Content
   ansible.builtin.get_url:
     url: https://github.com/ComplianceAsCode/content/releases/download/v{{ hardened_system_scap_content_version }}/scap-security-guide-{{ hardened_system_scap_content_version }}.tar.bz2
