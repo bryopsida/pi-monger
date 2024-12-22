@@ -42,10 +42,6 @@
   register: remediation_results
   ansible.builtin.command:
     cmd: oscap xccdf generate fix --profile {{ hardened_system_profile }} --output /dev/shm/oscap_tmp/fix.sh  /usr/share/xml/scap/ssg/content/scap-security-guide-{{ hardened_system_scap_content_version }}/ssg-ubuntu2204-ds.xml
-- name: Make Remediations Executable
-  ansible.builtin.file:
-    mode: '0500'
-    path: /dev/shm/oscap_tmp/fix.sh
 - name: Run Remediations
   ansible.builtin.command:
-    cmd: /dev/shm/oscap_tmp/fix.sh
+    cmd: /usr/bin/bash -C /dev/shm/oscap_tmp/fix.sh
