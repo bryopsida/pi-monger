@@ -25,7 +25,7 @@ Actively maintain means the plays are idempotent and intended to be run on a cro
 ## Running initial ansible-pull
 
 ```sh
-sudo ansible-pull -U https://github.com/bryopsida/pi-monger.git plays/<pick your falvor>.yaml
+sudo ansible-pull -U https://github.com/bryopsida/pi-monger.git -i inventory/localhost.ini plays/<pick your falvor>.yaml
 ```
 
 If you are cloning your own repo and running it locally, replace the url after -U.
