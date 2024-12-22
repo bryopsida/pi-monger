@@ -1,3 +1,9 @@
 ---
-- name: Echo
-  ansible.builtin.shell: echo "Hello, World!"
+- name: Print all available facts
+  ansible.builtin.debug:
+    var: ansible_facts
+# - name: Create cron job to re-run ansible-pull every 10 minutes
+#   ansible.builtin.cron:
+#     name: "ansible-pull"
+#     minute: "*/10"
+#     job: "ansible-pull -U <repository_url> <role_name>"
