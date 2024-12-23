@@ -71,4 +71,4 @@ runcmd:
 ...
 ```
 
-Save the modifications to user-data and umount.
+Save the modifications to user-data and umount. You can now insert it into PI and proceed with booting the system.
