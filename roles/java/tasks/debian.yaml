@@ -1,0 +1,5 @@
+---
+- name: Install Java
+  ansible.builtin.package:
+    name: "openjdk-{{ java_version }}-{{ java_type }}-headless"
+    state: latest
