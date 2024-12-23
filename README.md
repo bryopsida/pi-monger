@@ -43,3 +43,32 @@ packages:
 runcmd:
   - ansible-pull -U https://github.com/bryopsida/pi-monger.git -i inventory/localhost.ini plays/nodejs.yaml
 ```
+
+### How to run cloud-init on first boot
+
+Assuming you are using the Raspberry PI Imager tool, and selecting Ubuntu Server 22.04 or 24.04.
+After the flashing of the sd card has finished, remount the sd card.
+There should be a user-data file located at the root of the image, if not make one.
+
+Ansible must be added to packages
+
+``` yaml
+...
+packages:
+- avahi-daemon
+- ansible # add ansible
+...
+```
+
+An ansible pull instruction must be added
+
+``` yaml
+...
+runcmd:
+- localectl set-x11-keymap "us" pc105
+- setupcon -k --force || true
+- ansible-pull -U https://github.com/bryopsida/pi-monger.git -C main -i inventory/localhost.ini plays/nodejs.yaml
+...
+```
+
+Save the modifications to user-data and umount.
