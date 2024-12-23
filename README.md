@@ -30,3 +30,16 @@ sudo ansible-pull -U https://github.com/bryopsida/pi-monger.git -i inventory/loc
 ```
 
 If you are cloning your own repo and running it locally, replace the url after -U.
+
+## Cloud-Init
+
+### Example cloud-init.yaml
+
+``` yaml
+#cloud-config
+packages:
+  - ansible
+
+runcmd:
+  - ansible-pull -U https://github.com/bryopsida/pi-monger.git -i inventory/localhost.ini plays/nodejs.yaml
+```

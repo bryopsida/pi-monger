@@ -1,0 +1,11 @@
+---
+- name: Set Vars
+  hosts: all
+  tasks:
+    - name: Set play var if not defined
+      set_fact:
+        play: "{{ play | default('plays/node-red.yaml') }}"
+- name: Basic
+  ansible.builtin.import_playbook: basic.yaml
+- name: NodeJS
+  ansible.builtin.import_playbook: nodejs.yaml
