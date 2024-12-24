@@ -1,0 +1,15 @@
+---
+- name: Download Envoy's signing key.
+  ansible.builtin.get_url:
+    url: https://apt.envoyproxy.io/signing.key
+    dest: /etc/apt/keyrings/envoy-keyring.gpg
+    owner: root
+    group: root
+    mode: '0444'
+  register: envoy_signing_key
+- name: Jammy Repo
+  include_tasks: jammy.yml
+  when: ansible_facts['os_family'] == 'Debian' and ansible_facts['distribution'] == 'Ubuntu' and ansible_facts['distribution_release'] == 'jammy'
+- name: Noble Repo
+  include_tasks: noble.yml
+  when: ansible_facts['os_family'] == 'Debian' and ansible_facts['distribution'] == 'Ubuntu' and ansible_facts['distribution_release'] == 'noble'
