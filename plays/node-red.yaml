@@ -9,3 +9,7 @@
   ansible.builtin.import_playbook: basic.yaml
 - name: NodeJS
   ansible.builtin.import_playbook: nodejs.yaml
+- name: Node-RED
+  hosts: all
+  roles:
+    - node-red
