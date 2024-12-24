@@ -1,5 +1,5 @@
 ---
-- name: Add immutable attribute {{ item }}
+- name: Add immutable attribute
   ansible.builtin.include_tasks: add-immutable.yml
   with_items:
     - package.json
