@@ -2,7 +2,7 @@
 - name: Download Cloudflare's signing key.
   ansible.builtin.get_url:
     url: https://pkg.cloudflare.com/cloudflare-main.gpg
-    dest: /etc/apt/keyrings/cloudflare-keyring.asc
+    dest: /etc/apt/keyrings/cloudflare-keyring.gpg
     owner: root
     group: root
     mode: '0444'

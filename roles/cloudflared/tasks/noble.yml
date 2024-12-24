@@ -1,6 +1,6 @@
 ---
 - name: Add cloudflared repository.
   ansible.builtin.apt_repository:
-    repo: "deb [signed-by=/etc/apt/keyrings/cloudflare-keyring.asc] https://pkg.cloudflare.com/cloudflared noble main"
+    repo: "deb [signed-by=/etc/apt/keyrings/cloudflare-keyring.gpg] https://pkg.cloudflare.com/cloudflared noble main"
     state: present
     filename: 'cloudflared'
