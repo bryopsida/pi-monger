@@ -1,0 +1,7 @@
+---
+- name: Add immutable attribute {{ item }}
+  ansible.builtin.include_tasks: add-immutable.yml
+  with_items:
+    - package.json
+    - package-lock.json
+    - service.mjs

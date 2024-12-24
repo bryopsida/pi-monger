@@ -1,0 +1,7 @@
+---
+- name: Remove immutable attribute {{ item }}
+  ansible.builtin.include_tasks: remove-immutable.yml
+  with_items:
+    - package.json
+    - package-lock.json
+    - service.mjs
