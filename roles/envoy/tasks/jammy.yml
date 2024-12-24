@@ -1,6 +1,6 @@
 ---
 - name: Add Envoy repository.
   ansible.builtin.apt_repository:
-    repo: "deb [arch={{ ansible_architecture }} signed-by=/etc/apt/keyrings/envoy-keyring.asc] https://apt.envoyproxy.io jammy main"
+    repo: "deb [arch={{ deb_architecture.stdout }} signed-by=/etc/apt/keyrings/envoy-keyring.asc] https://apt.envoyproxy.io jammy main"
     state: present
     filename: 'envoy'

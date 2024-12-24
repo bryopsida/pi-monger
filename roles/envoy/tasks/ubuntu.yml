@@ -1,4 +1,7 @@
 ---
+- name: Get DEB architecture
+  ansible.builtin.shell: dpkg --print-architecture
+  register: deb_architecture
 - name: Download Envoy's signing key.
   ansible.builtin.get_url:
     url: https://apt.envoyproxy.io/signing.key
