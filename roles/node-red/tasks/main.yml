@@ -1,4 +1,6 @@
 ---
+- name: Remove immutable attribute
+  ansible.builtin.include_tasks: remove-immutable.yml
 - name: Create node-red group
   ansible.builtin.group:
     name: node-red
@@ -67,3 +69,5 @@
     dest: /etc/systemd/system/node-red.service
     mode: '0440'
   notify: Reload service
+- name: Add immutable attribute
+  ansible.builtin.include_tasks: add-immutable.yml

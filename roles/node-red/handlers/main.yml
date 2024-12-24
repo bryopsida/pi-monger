@@ -17,9 +17,3 @@
 - name: Reload apparmor
   ansible.builtin.command:
     cmd: apparmor_parser -r -T -W /etc/apparmor.d/opt.{{ node_red_org }}.node-red.service
-  notify:
-    - Enable apparmor profile
-
-- name: Enable apparmor profile
-  ansible.builtin.command:
-    cmd: apparmor_parser -a /etc/apparmor.d/opt.{{ node_red_org }}.node-red.service

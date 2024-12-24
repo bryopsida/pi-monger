@@ -1,0 +1,11 @@
+---
+- name: Add immutable attribute from package.json
+  become: true
+  ansible.builtin.file:
+    path: /opt/{{ node_red_org }}/node-red/{{ item }}
+    attributes: 'i'
+  with_items:
+    - package.json
+    - package-lock.json
+    - service.mjs
+  when: ansible.builtin.stat(path="/opt/{{ node_red_org }}/node-red/{{ item }}").stat.exists
