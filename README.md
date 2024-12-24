@@ -28,6 +28,7 @@ Actively maintain means the plays are idempotent and intended to be run on a cro
 - [ ] Implement node-red role that installs node-red and takes patches on cron
 - [ ] Implement monitoring role that reports system information to an external system
 - [ ] Implement envoy role that installs reverse proxy
+- [ ] Implement traefik role alternative to envoy
 - [ ] Implement cloudflared role
 - [ ] Implement guacamole role
 
