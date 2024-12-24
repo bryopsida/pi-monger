@@ -4,6 +4,7 @@
   ansible.builtin.stat:
     path: /opt/{{ node_red_org }}/node-red/{{ item }}
 - name: Add immutable attribute to {{ item }}
+  become: true
   ansible.builtin.file:
     path: /opt/{{ node_red_org }}/node-red/{{ item }}
     attributes: 'i'
