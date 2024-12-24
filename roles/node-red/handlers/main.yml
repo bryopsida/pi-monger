@@ -11,5 +11,5 @@
   become: true
   become_user: "node-red"
   ansible.builtin.command:
-    cmd: npm ci --prefer-offline --no-audit
+    cmd: npm ci --prefer-offline --no-audit --omit=dev
     chdir: /opt/{{ node_red_org }}/node-red
