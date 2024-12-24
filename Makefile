@@ -10,3 +10,11 @@ delete-targets:
 
 .PHONY: test
 test: test-targets
+
+/opt/homebrew/bin/ansible-lint:
+	brew install ansible-lint
+
+
+.PHONY: lint
+lint: /opt/homebrew/bin/ansible-lint
+	ansible-lint
