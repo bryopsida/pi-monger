@@ -36,7 +36,6 @@
   when: package_lock_json.changed
   become: true
   become_user: "{{ node_red_uid }}"
-  become_group: "{{ node_red_gid }}"
   ansible.builtin.command:
     cmd: npm ci --prefer-offline --no-audit
     chdir: /opt/{{ node_red_org }}/node-red
