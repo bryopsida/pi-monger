@@ -1,0 +1,42 @@
+---
+- name: Create /opt/{{ node_red_org }} directory
+  ansible.builtin.file:
+    path: /opt/{{ node_red_org }}
+    state: directory
+    owner: "{{ node_red_uid }}"
+    group: "{{ node_red_gid }}"
+    mode: '0755'
+
+- name: Create /opt/{{ node_red_org }}/node-red directory
+  ansible.builtin.file:
+    path: /opt/{{ node_red_org }}/node-red
+    state: directory
+    owner: "{{ node_red_uid }}"
+    group: "{{ node_red_gid }}"
+    mode: '0750'
+
+- name: Copy package.json to /opt/{{ node_red_org }}/node-red
+  ansible.builtin.copy:
+    src: files/app/package.json
+    dest: /opt/{{ node_red_org }}/node-red/package.json
+    owner: "{{ node_red_uid }}"
+    group: "{{ node_red_gid }}"
+    mode: '0440'
+
+- name: Copy package-lock.json to /opt/{{ node_red_org }}/node-red
+  register: package_lock_json
+  ansible.builtin.copy:
+    src: files/app/package-lock.json
+    dest: /opt/{{ node_red_org }}/node-red/package-lock.json
+    owner: "{{ node_red_uid }}"
+    group: "{{ node_red_gid }}"
+    mode: '0440'
+
+- name: Run npm clean install
+  when: package_lock_json.changed
+  ansible.builtin.command:
+    cmd: npm ci --prefer-offline --no-audit
+    chdir: /opt/{{ node_red_org }}/node-red
+    become: true
+    become_user: "{{ node_red_uid }}"
+    become_group: "{{ node_red_gid }}"
