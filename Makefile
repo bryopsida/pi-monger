@@ -18,3 +18,10 @@ test: test-targets
 .PHONY: lint
 lint: /opt/homebrew/bin/ansible-lint
 	ansible-lint
+
+/opt/homebrew/bin/kics:
+	brew install kics
+
+.PHONY: secure
+secure: /opt/homebrew/bin/kics
+	kics scan
