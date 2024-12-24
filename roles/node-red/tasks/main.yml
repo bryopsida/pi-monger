@@ -3,12 +3,14 @@
   ansible.builtin.group:
     name: node-red
     gid: "{{ node_red_gid }}"
+
 - name: Create node-red user
   ansible.builtin.user:
     name: node-red
     uid: "{{ node_red_uid }}"
     group: node-red
     shell: /usr/sbin/nologin
+
 - name: Create /opt/{{ node_red_org }} directory
   ansible.builtin.file:
     path: /opt/{{ node_red_org }}
@@ -42,10 +44,25 @@
     group: "{{ node_red_gid }}"
     mode: '0440'
 
+- name: Copy service.mjs to /opt/{{ node_red_org }}/node-red
+  ansible.builtin.copy:
+    src: files/app/service.mjs
+    dest: /opt/{{ node_red_org }}/node-red/service.mjs
+    owner: "{{ node_red_uid }}"
+    group: "{{ node_red_gid }}"
+    mode: '0750'
+
+- name: Copy node-red.service to /etc/systemd/system
+  ansible.builtin.template:
+    src: files/app/debian/node-red.service.j2
+    dest: /etc/systemd/system/node-red.service
+    mode: '0440'
+  notify: Reload service
+
 - name: Run npm clean install
   when: package_lock_json.changed
   become: true
-  become_user: "{{ node_red_uid }}"
+  become_user: "node-red"
   ansible.builtin.command:
     cmd: npm ci --prefer-offline --no-audit
     chdir: /opt/{{ node_red_org }}/node-red
