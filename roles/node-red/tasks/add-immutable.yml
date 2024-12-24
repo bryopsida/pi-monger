@@ -5,6 +5,7 @@
     path: /opt/{{ node_red_org }}/node-red/{{ item }}
 - name: Add immutable attribute to {{ item }}
   become: true
+  when: file_stat.stat.exists
   ansible.builtin.file:
     path: /opt/{{ node_red_org }}/node-red/{{ item }}
     attributes: 'i'
