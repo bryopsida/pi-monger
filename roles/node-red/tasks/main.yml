@@ -55,6 +55,12 @@
     group: "{{ node_red_gid }}"
     mode: '0750'
 
+- name: Copy apparmor profile to /etc/apparmor.d
+  notify: Reload apparmor
+  ansible.builtin.template:
+    src: files/app/debian/node-red.apparmor.j2
+    dest: /etc/apparmor.d/opt.{{ node_red_org }}.node-red.service
+    mode: '0440'
 - name: Copy node-red.service to /etc/systemd/system
   ansible.builtin.template:
     src: files/app/debian/node-red.service.j2
