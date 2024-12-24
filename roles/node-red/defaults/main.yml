@@ -5,4 +5,3 @@ node_red_immutable_files:
   - package.json
   - package-lock.json
   - service.mjs
-  - node_modules
