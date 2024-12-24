@@ -1,4 +1,14 @@
 ---
+- name: Create node-red group
+  ansible.builtin.group:
+    name: node-red
+    gid: "{{ node_red_gid }}"
+- name: Create node-red user
+  ansible.builtin.user:
+    name: node-red
+    uid: "{{ node_red_uid }}"
+    group: node-red
+    shell: /usr/sbin/nologin
 - name: Create /opt/{{ node_red_org }} directory
   ansible.builtin.file:
     path: /opt/{{ node_red_org }}
