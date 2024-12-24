@@ -2,7 +2,7 @@
 - name: Download Envoy's signing key.
   ansible.builtin.get_url:
     url: https://apt.envoyproxy.io/signing.key
-    dest: /etc/apt/keyrings/envoy-keyring.gpg
+    dest: /etc/apt/keyrings/envoy-keyring.asc
     owner: root
     group: root
     mode: '0444'
@@ -13,3 +13,7 @@
 - name: Noble Repo
   include_tasks: noble.yml
   when: ansible_facts['os_family'] == 'Debian' and ansible_facts['distribution'] == 'Ubuntu' and ansible_facts['distribution_release'] == 'noble'
+- name: Install Envoy
+  ansible.builtin.package:
+    name: "envoy"
+    state: "latest"
