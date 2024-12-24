@@ -4,6 +4,7 @@
     "config:base"
   ],
   "automerge": true,
+  "dependencyDashboard": true,
   "git-submodules": {
     "enabled": true
   }
