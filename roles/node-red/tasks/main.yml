@@ -37,14 +37,17 @@
 
 - name: Copy package-lock.json to /opt/{{ node_red_org }}/node-red
   register: package_lock_json
+  notify: Install node modules
   ansible.builtin.copy:
     src: files/app/package-lock.json
     dest: /opt/{{ node_red_org }}/node-red/package-lock.json
     owner: "{{ node_red_uid }}"
     group: "{{ node_red_gid }}"
     mode: '0440'
+  
 
 - name: Copy service.mjs to /opt/{{ node_red_org }}/node-red
+  notify: Reload service
   ansible.builtin.copy:
     src: files/app/service.mjs
     dest: /opt/{{ node_red_org }}/node-red/service.mjs
@@ -58,11 +61,3 @@
     dest: /etc/systemd/system/node-red.service
     mode: '0440'
   notify: Reload service
-
-- name: Run npm clean install
-  when: package_lock_json.changed
-  become: true
-  become_user: "node-red"
-  ansible.builtin.command:
-    cmd: npm ci --prefer-offline --no-audit
-    chdir: /opt/{{ node_red_org }}/node-red
