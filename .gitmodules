@@ -1,0 +1,3 @@
+[submodule "roles/node-red/files/app"]
+	path = roles/node-red/files/app
+	url = https://github.com/bryopsida/node-red-service.git
