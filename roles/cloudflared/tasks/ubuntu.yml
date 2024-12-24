@@ -1,0 +1,19 @@
+---
+- name: Download Cloudflare's signing key.
+  ansible.builtin.get_url:
+    url: https://pkg.cloudflare.com/cloudflare-main.gpg
+    dest: /etc/apt/keyrings/cloudflare-keyring.asc
+    owner: root
+    group: root
+    mode: '0444'
+  register: cloudflare_signing_key
+- name: Jammy Repo
+  include_tasks: jammy.yml
+  when: ansible_facts['os_family'] == 'Debian' and ansible_facts['distribution'] == 'Ubuntu' and ansible_facts['distribution_release'] == 'jammy'
+- name: Noble Repo
+  include_tasks: noble.yml
+  when: ansible_facts['os_family'] == 'Debian' and ansible_facts['distribution'] == 'Ubuntu' and ansible_facts['distribution_release'] == 'noble'
+- name: Install cloudflare
+  ansible.builtin.package:
+    name: "cloudflared"
+    state: "latest"

@@ -1,0 +1,4 @@
+---
+- name: Ubuntu
+  include_tasks: ubuntu.yml
+  when: ansible_facts['os_family'] == 'Debian' and ansible_facts['distribution'] == 'Ubuntu'
