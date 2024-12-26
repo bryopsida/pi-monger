@@ -1,0 +1,9 @@
+---
+- name: Reload cloudflared service
+  ansible.builtin.systemd:
+    daemon_reload: yes
+    state: restarted
+    name: cloudflared
+    enabled: yes
+    masked: no
+    scope: system

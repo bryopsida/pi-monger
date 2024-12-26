@@ -1,2 +1,3 @@
 cloudflared_uid: "13371"
 cloudflared_gid: "13371"
+# cloudflared_tunnel_token: "your tunnel token from cloudflare zero trust"

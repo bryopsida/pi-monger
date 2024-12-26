@@ -1,0 +1,15 @@
+[Unit]
+Description=Cloudflare Tunnel
+After=network.target
+
+[Service]
+User=cloudflared
+Group=cloudflared
+TimeoutStartSec=0
+Type=notify
+ExecStart=/usr/local/bin/cloudflared tunnel --loglevel debug --logfile /var/log/cloudflared/cloudflared.log run --config /etc/cloudflared/config.yaml
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target
