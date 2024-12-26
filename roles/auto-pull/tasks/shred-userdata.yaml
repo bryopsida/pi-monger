@@ -1,7 +1,13 @@
 ---
+- name: Check if /boot/firmware/user-data exists
+  become: true
+  ansible.builtin.stat:
+    path: /boot/firmware
+  register: user_data_exists
 - name: Ensure the user-data file is removed
   become: true
   ansible.builtin.file:
     path: /boot/firmware/user-data
     state: absent
-    force: yes
+    force: true
+  when: user_data_exists.stat.exists == true

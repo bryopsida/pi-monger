@@ -17,4 +17,3 @@
   ansible.builtin.include_tasks: disable-cloudinit.yaml
 - name: Shred userdata
   ansible.builtin.include_tasks: shred-userdata.yaml
-  when: ansible_facts['system'] | search('Raspberry Pi')
