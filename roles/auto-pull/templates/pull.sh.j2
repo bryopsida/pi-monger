@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-{% if auto_pull_secure_copy_enabled is defined %}
+{% if auto_pull_secure_copy_enabled %}
 scp -i {{ auto_pull_ssh_key }} {{ auto_pull_ssh_user }}@{{ auto_pull_ssh_host }}:{{ auto_pull_ssh_remote_path }} {{ auto_pull_local_path }}
-{% endif }
+{% endif %}
 /usr/bin/ansible-pull -U {{ auto_pull_repo_url }} -C {{ auto_pull_repo_version }} -i {{ auto_pull_inventory }} {{ auto_pull_play }}
