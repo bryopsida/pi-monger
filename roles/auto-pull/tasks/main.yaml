@@ -13,3 +13,8 @@
     month: "{{ auto_pull_cron_job_month }}"
     weekday: "{{ auto_pull_cron_job_weekday }}"
     job: "/root/ansible-auto-pull.sh"
+- name: Disable cloud init
+  ansible.builtin.include_tasks: disable-cloudinit.yaml
+- name: Shred userdata
+  ansible.builtin.include_tasks: shred-userdata.yaml
+  when: ansible_facts['system'] | regex('Raspberry Pi')

@@ -1,0 +1,4 @@
+---
+- name: Disable cloud-init
+  command: touch /etc/cloud/cloud-init.disabled
+  become: true

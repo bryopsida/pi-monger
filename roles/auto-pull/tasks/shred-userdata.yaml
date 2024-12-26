@@ -1,0 +1,7 @@
+---
+- name: Ensure the user-data file is removed
+  become: true
+  ansible.builtin.file:
+    path: /boot/firmware/user-data
+    state: absent
+    force: yes
