@@ -81,3 +81,33 @@ runcmd:
 ```
 
 Save the modifications to user-data and umount. You can now insert it into PI and proceed with booting the system.
+
+### Using sensitive values
+
+If you need to provide the play with sensitive values such as access keys, you should do this using a secure copy to pull in vault and inventory values.
+
+For example
+
+``` yaml
+#cloud-config
+packages:
+  - ansible
+
+write_files:
+  - content: |
+      <ssh private key with read access to server holding vault>
+    path: /root/.ssh/ansible
+    permissions: '0400'
+    owner: 'root:root'
+  - content: |
+      <ssh public key with read access to server holding vault>
+    path: /root/.ssh/ansible.pub
+    permissions: '0444'
+    owner: 'root:root'
+
+runcmd:
+  - scp -i /root/.ssh/ansible ansible@servername:/home/ansible/ansible-files /root/ansible-files
+  - ansible-pull -U https://github.com/bryopsida/pi-monger.git -i /root/ansible-files/inventory/localhost.ini --vault-password-file /root/ansible-files/vault-password plays/nodejs.yaml
+```
+
+If you are using a private repo you likely will prefer to keep the inventory and vault files in source with the playbooks, the above approach can be used to fetch the vault key file as well

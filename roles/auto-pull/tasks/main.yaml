@@ -1,4 +1,9 @@
 ---
+- name: Render script
+  ansible.builtin.template:
+    src: pull.sh.j2
+    dest: /root/ansible-auto-pull.sh
+    mode: '0540'
 - name: Create cron job to re-run ansible-pull on configured interval
   ansible.builtin.cron:
     name: "{{ auto_pull_cron_job_name }}"
@@ -7,4 +12,4 @@
     day: "{{ auto_pull_cron_job_day }}"
     month: "{{ auto_pull_cron_job_month }}"
     weekday: "{{ auto_pull_cron_job_weekday }}"
-    job: "/usr/bin/ansible-pull -U {{ auto_pull_repo_url }} -C {{ auto_pull_repo_version }} -i {{ auto_pull_inventory }} {{ auto_pull_play }}"
+    job: "/root/ansible-auto-pull.sh"
