@@ -14,5 +14,7 @@ auto_pull_secure_copy_enabled: false
 auto_pull_secure_copy_key: "/root/.ssh/ansible"
 auto_pull_secure_copy_user: "ansible"
 auto_pull_secure_copy_host: "ansible-server"
+auto_pull_shred_enabled: true
+auto_pull_shred_folder: "/root/ansible-files"
 auto_pull_secure_copy_remote_path: "/home/ansible/ansible-files"
 auto_pull_secure_copy_local_path: "/root"
