@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 set -e
+ansible-galaxy collection install ansible.windows ansible.utils
+ansible-galaxy install newrelic.newrelic_install
 {% if auto_pull_secure_copy_enabled %}
 cleanup() {
   find {{ auto_pull_shred_folder }} -type f -exec shred -uvz {} \;
