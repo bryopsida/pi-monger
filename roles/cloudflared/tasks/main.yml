@@ -1,4 +1,14 @@
 ---
+- name: Create cloudflared group
+  ansible.builtin.group:
+    name: cloudflared
+    gid: "{{ cloudflared_gid }}"
+- name: Create cloudflared user
+  ansible.builtin.user:
+    name: cloudflared
+    uid: "{{ cloudflared_uid }}"
+    group: cloudflared
+    shell: /usr/sbin/nologin
 - name: Ubuntu
   include_tasks: ubuntu.yml
   when: ansible_facts['os_family'] == 'Debian' and ansible_facts['distribution'] == 'Ubuntu'
