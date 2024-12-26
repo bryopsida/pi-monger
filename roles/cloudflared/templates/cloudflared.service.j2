@@ -6,8 +6,8 @@ After=network.target
 User=cloudflared
 Group=cloudflared
 TimeoutStartSec=0
-Type=notify
-ExecStart=/usr/local/bin/cloudflared tunnel --loglevel debug --logfile /var/log/cloudflared/cloudflared.log run --config /etc/cloudflared/config.yaml
+Type=simple
+ExecStart=/usr/local/bin/cloudflared tunnel --loglevel debug --logfile /var/log/cloudflared/cloudflared.log run
 Restart=on-failure
 RestartSec=5s
 
