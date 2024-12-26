@@ -149,8 +149,9 @@ The details of setting up a SSH server is out of scope for this repo, depending 
 localhost ansible_connection=local
 
 [all:vars]
-auto_pull_secure_copy_enabled: true
-auto_pull_secure_copy_host: <<hostname of your ssh server with ansible-files>>
+auto_pull_inventory=/root/ansible-files/inventory/localhost.ini
+auto_pull_secure_copy_enabled=true
+auto_pull_secure_copy_host=<hostname of your ssh server with ansible-files>
 ```
 
 The resulting folder structure should look like this

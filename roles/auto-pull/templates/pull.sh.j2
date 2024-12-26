@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 {% if auto_pull_secure_copy_enabled %}
-scp -r -i {{ auto_pull_ssh_key }} {{ auto_pull_ssh_user }}@{{ auto_pull_ssh_host }}:{{ auto_pull_ssh_remote_path }} {{ auto_pull_local_path }}
-{% endif %}
+scp -r -i {{ auto_pull_secure_copy_key }} {{ auto_pull_secure_copy_user }}@{{ auto_pull_ssh_host }}:{{ auto_pull_ssh_remote_path }} {{ auto_pull_local_path }}
+/usr/bin/ansible-pull -U {{ auto_pull_repo_url }} -C {{ auto_pull_repo_version }} -i {{ auto_pull_inventory } --vault-password-file {{ auto_pull_vault_password_file }} {{ auto_pull_play }}
+{% else %}
 /usr/bin/ansible-pull -U {{ auto_pull_repo_url }} -C {{ auto_pull_repo_version }} -i {{ auto_pull_inventory }} {{ auto_pull_play }}
+{% endif %}
