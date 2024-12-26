@@ -42,3 +42,9 @@
         auto_pull_play: "plays/harden.yaml"
         auto_pull_cron_job_minute: "0"
         auto_pull_cron_job_hour: "0"
+
+- name: Add conditional roles
+  hosts: all
+  roles:
+    - role: cloudflared
+      when: cloudflared_enabled

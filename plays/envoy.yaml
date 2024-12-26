@@ -1,5 +1,0 @@
----
-- name: Envoy
-  hosts: all
-  roles:
-    - envoy
