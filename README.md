@@ -17,7 +17,7 @@ Actively maintain means the plays are idempotent and intended to be run on a cro
 ## TODOs
 
 - [ ] Add test pipeline where pull runs on main, and then tries to run the pull on incoming branch, use multipass
-- [ ] Add instructions for providing secrets/vaults to plays with cloud-init
+- [x] Add instructions for providing secrets/vaults to plays with cloud-init
 - [x] Add instructions to run initial ansible-pull
 - [x] Add instructions on how to add ansible-pull to sdcard cloud-init to run ansible-pull on first boot
 - [x] Implement update system role
@@ -31,7 +31,7 @@ Actively maintain means the plays are idempotent and intended to be run on a cro
 - [ ] Implement traefik role alternative to envoy
 - [ ] Implement cloudflared role
 - [ ] Implement guacamole role
-- [ ] Disable cloud-init and shred user-data after first pull
+- [x] Disable cloud-init and shred user-data after first pull
 
 ## Running initial ansible-pull
 
@@ -107,7 +107,7 @@ write_files:
     owner: 'root:root'
 
 runcmd:
-  - scp -r -i /root/.ssh/ansible ansible@<servername with ansible files>:/home/ansible/ansible-files /root
+  - scp -o StrictHostKeyChecking=no -r -i /root/.ssh/ansible ansible@<servername with ansible files>:/home/ansible/ansible-files /root
   - ansible-pull -U https://github.com/bryopsida/pi-monger.git -i /root/ansible-files/inventory/localhost.ini --vault-password-file /root/ansible-files/vault-password plays/nodejs.yaml
 ```
 
@@ -219,6 +219,6 @@ timezone: <your timezone>
 runcmd:
   - localectl set-x11-keymap "us" pc105
   - setupcon -k --force || true
-  - scp -r -i /root/.ssh/ansible ansible@your.ansible.server.name:/home/ansible/ansible-files /root
+  - scp -o StrictHostKeyChecking=no -r -i /root/.ssh/ansible ansible@your.ansible.server.name:/home/ansible/ansible-files /root
   - ansible-pull -U https://github.com/bryopsida/pi-monger.git -i /root/ansible-files/inventory/localhost.ini --vault-password-file /root/ansible-files/vault-password plays/nodejs.yaml
 ```
