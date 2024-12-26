@@ -1,0 +1,9 @@
+---
+- ansible.builtin.include_role:
+    name: newrelic.newrelic_install
+  vars:
+    targets: "{{ newrelic_targets }}"
+  environment:
+    NEW_RELIC_API_KEY: "{{ newrelic_api_key }}"
+    NEW_RELIC_ACCOUNT_ID: "{{ newrelic_account_id }}"
+    NEW_RELIC_REGION: "{{ newrelic_region }}"

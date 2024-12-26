@@ -16,3 +16,5 @@
       when: java_enabled
     - role: cloudflared
       when: cloudflared_enabled
+    - role: newrelic
+      when: newrelic_enabled
