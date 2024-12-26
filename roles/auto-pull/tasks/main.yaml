@@ -2,7 +2,7 @@
 - name: Render script
   ansible.builtin.template:
     src: pull.sh.j2
-    dest: /root/ansible-auto-pull.sh
+    dest: "{{ auto_pull_script_path }}"
     mode: '0540'
 - name: Create cron job to re-run ansible-pull on configured interval
   ansible.builtin.cron:
@@ -12,9 +12,9 @@
     day: "{{ auto_pull_cron_job_day }}"
     month: "{{ auto_pull_cron_job_month }}"
     weekday: "{{ auto_pull_cron_job_weekday }}"
-    job: "/root/ansible-auto-pull.sh"
+    job: "{{ auto_pull_script_path }}"
 - name: Disable cloud init
   ansible.builtin.include_tasks: disable-cloudinit.yaml
 - name: Shred userdata
   ansible.builtin.include_tasks: shred-userdata.yaml
-  when: ansible_facts['system'] | regex('Raspberry Pi')
+  when: ansible_facts['system'] | search('Raspberry Pi')

@@ -1,4 +1,6 @@
 ---
-- name: Disable cloud-init
-  command: touch /etc/cloud/cloud-init.disabled
+- name:  Disable cloud-init
   become: true
+  ansible.builtin.file:
+    path: /etc/cloud/cloud-init.disabled
+    state: touch

@@ -5,6 +5,7 @@
     - name: Set play var if not defined
       set_fact:
         play: "{{ play | default('plays/basic.yaml') }}"
+
 - name: Basic
   hosts: all
   roles:
@@ -13,3 +14,31 @@
     - role: auto-pull
       vars:
         auto_pull_play: "{{ play }}"
+
+- name: Initial harden
+  hosts: all
+  become: true
+  tasks:
+    - name: Check if system has been hardened
+      register: initial_harden_executed
+      ansible.builtin.stat:
+        path: /etc/initial-harden-executed
+    - name: Run Initial Harden
+      include_role:
+        name: hardened-system
+      when: initial_harden_executed.stat.exists == false
+    - name: Create file to indicate initial harden has been executed
+      ansible.builtin.file:
+        path: /etc/initial-harden-executed
+        state: touch
+
+- name: Setup automatic hardening
+  hosts: all
+  roles:
+    - role: auto-pull
+      vars:
+        auto_pull_script_path: "/root/ansible-auto-harden-pull.sh"
+        auto_pull_cron_job_name: "ansible-pull-harden"
+        auto_pull_play: "plays/harden.yaml"
+        auto_pull_cron_job_minute: "0"
+        auto_pull_cron_job_hour: "0"
