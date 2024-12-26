@@ -106,7 +106,7 @@ write_files:
     owner: 'root:root'
 
 runcmd:
-  - scp -i /root/.ssh/ansible ansible@servername:/home/ansible/ansible-files /root/ansible-files
+  - scp -r -i /root/.ssh/ansible ansible@<servername with ansible files>:/home/ansible/ansible-files /root
   - ansible-pull -U https://github.com/bryopsida/pi-monger.git -i /root/ansible-files/inventory/localhost.ini --vault-password-file /root/ansible-files/vault-password plays/nodejs.yaml
 ```
 
