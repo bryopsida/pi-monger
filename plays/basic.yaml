@@ -3,7 +3,7 @@
   hosts: all
   tasks:
   - name: Galaxy install
-    local_action: command ansible-galaxy install -r requirements.yml
+    local_action: command ansible-galaxy install -r ../requirements.yml
 - name: Set Vars
   hosts: all
   tasks:
