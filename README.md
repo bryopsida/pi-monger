@@ -31,6 +31,7 @@ Actively maintain means the plays are idempotent and intended to be run on a cro
 - [ ] Implement traefik role alternative to envoy
 - [ ] Implement cloudflared role
 - [ ] Implement guacamole role
+- [ ] Disable cloud-init and shred user-data after first pull
 
 ## Running initial ansible-pull
 
@@ -111,3 +112,112 @@ runcmd:
 ```
 
 If you are using a private repo you likely will prefer to keep the inventory and vault files in source with the playbooks, the above approach can be used to fetch the vault key file as well
+
+### Complete example
+
+#### Assumptions
+
+1) You know how to setup a SSH server
+1) A cloud provider secret manager is not available
+1) The ssh username is named ansible
+1) You are familiar with using Rasperry PI Imager
+1) You are familiar with mounting sdcards in your operating system
+1) You are familiar with linux file permissions and set appropriate permissions on your ansible files to restrict access to the owner:group.
+1) Some familiarity with [cloud-init](https://cloudinit.readthedocs.io/en/latest/#)
+
+#### Setup a SSH server
+
+In order to handle sensitive values we cannot check into source, ansible vaults will need to be used. For that reason we need a ssh server we can use scp to fetch the values managed outside of source.
+The details of setting up a SSH server is out of scope for this repo, depending on your network setup you may be able to use your router/gateway.
+
+##### Recommeneded Configuration
+
+1) Use pubkey ssh authentication
+1) Create dedicated non admin limited scope account to hold the ansible values
+
+#### SSH Server File Setup
+
+1) Login to your ssh server for holding the inventory files
+1) Create the `ansible-files` folder under the ssh users home folder
+1) Create a `vault-password` file underneath `ansible-files` folder, this should match the password you use for vaulting any sensitive values
+1) Create a `inventory` folder underneath the `ansible-files` folder
+1) Create a `localhost.ini` file under the `ansible-files/inventory` file with the following contents
+1) Ensure you have a copy of the ssh private key and public key for the ssh user
+
+``` ini
+[all]
+localhost ansible_connection=local
+
+[all:vars]
+auto_pull_secure_copy_enabled: true
+auto_pull_secure_copy_host: <<hostname of your ssh server with ansible-files>>
+```
+
+The resulting folder structure should look like this
+
+``` shell
+tree ansible-files    
+ansible-files
+├── inventory
+│   └── localhost.ini
+└── vault-password
+
+2 directories, 2 files
+```
+
+#### Flash a Ubuntu Server 22.04 Image
+
+Use [Raspberry PI Imager](https://www.raspberrypi.com/software/) to create a Ubuntu Server 22.04 image.
+
+#### Modify `user-data` to run ansible-pull
+
+After the image hs been created using Raspberry PI Imager.
+
+1) Remount the image.
+1) Open the `user-data` file with your editor of choice.
+1) Update `user-data` to look like this with your values replaced
+
+``` yaml
+#cloud-config
+hostname: <your desired hostname>
+manage_etc_hosts: true
+packages:
+  - avahi-daemon
+  - ansible
+apt:
+  conf: |
+    Acquire {
+      Check-Date "false";
+    };
+
+users:
+  - name: <your desired username>
+    groups: users,adm,dialout,audio,netdev,video,plugdev,cdrom,games,input,gpio,spi,i2c,render,sudo
+    shell: /bin/bash
+    lock_passwd: false
+    passwd: <passwd hash>
+    ssh_authorized_keys:
+      - <ssh pub key>
+    sudo: ALL=(ALL) NOPASSWD:ALL
+
+write_files:
+  - content: |
+      -----BEGIN OPENSSH PRIVATE KEY-----
+      <redacted>
+      -----END OPENSSH PRIVATE KEY-----
+    path: /root/.ssh/ansible
+    permissions: '0400'
+    owner: 'root:root'
+  - content: |
+      ssh-ed25519 redacted username@host
+    path: /root/.ssh/ansible.pub
+    permissions: '0444'
+    owner: 'root:root'
+
+timezone: <your timezone>
+runcmd:
+  - localectl set-x11-keymap "us" pc105
+  - setupcon -k --force || true
+  - scp -r -i /root/.ssh/ansible ansible@your.ansible.server.name:/home/ansible/ansible-files /root
+  - ansible-pull -U https://github.com/bryopsida/pi-monger.git -i /root/ansible-files/inventory/localhost.ini --vault-password-file /root/ansible-files/vault-password plays/nodejs.yaml
+```
