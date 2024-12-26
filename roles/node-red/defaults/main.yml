@@ -1,6 +1,7 @@
 node_red_uid: "13370"
 node_red_gid: "13370"
 node_red_org: "bryopsida"
+node_red_enabled: false
 node_red_immutable_files:
   - package.json
   - package-lock.json

@@ -1,3 +1,4 @@
 cloudflared_uid: "13371"
 cloudflared_gid: "13371"
+cloudflared_enabled: false
 # cloudflared_tunnel_token: "your tunnel token from cloudflare zero trust"

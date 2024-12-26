@@ -1,2 +1,3 @@
 java_version: "21"
 java_type: "jre"
+java_enabled: false
