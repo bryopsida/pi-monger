@@ -6,6 +6,7 @@ node_red_host: '127.0.0.1'
 node_red_port: '3000'
 node_red_admin_path: '/admin'
 node_red_api_path: '/'
+node_red_dotenv_path: '/etc/node-red/.env'
 node_red_immutable_files:
   - package.json
   - package-lock.json
