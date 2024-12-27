@@ -1,0 +1,13 @@
+- name: Get Falco APT Key
+  ansible.builtin.get_url:
+    url: https://falco.org/repo/falcosecurity-packages.asc
+    dest: /tmp/falco-repo-gpg.asc
+    mode: '0440'
+- name: Trust Falco APT Key
+  ansible.builtin.apt_key:
+    file: /tmp/falco-repo-gpg.asc
+    state: present
+- name: Add Falco APT Repo
+  ansible.builtin.apt_repository:
+    repo: deb https://download.falco.org/packages/deb stable main
+    state: present

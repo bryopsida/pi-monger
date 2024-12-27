@@ -18,3 +18,5 @@
       when: cloudflared_enabled
     - role: newrelic
       when: newrelic_enabled
+    - role: falco
+      when: falco_enabled
