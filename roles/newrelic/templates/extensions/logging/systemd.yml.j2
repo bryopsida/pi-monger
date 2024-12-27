@@ -1,0 +1,9 @@
+###############################################################################
+# Log forwarder configuration file example                                    #
+# Source: systemd                                                             #
+# Available customization parameters: attributes, max_line_kb, pattern        #
+###############################################################################
+logs:
+  - name: journald
+    # empty object captures all units
+    systemd:
