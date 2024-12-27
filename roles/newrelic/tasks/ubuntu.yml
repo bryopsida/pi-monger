@@ -1,7 +1,7 @@
 - name: Download NewRelic's signing key.
   ansible.builtin.get_url:
     url: https://download.newrelic.com/infrastructure_agent/gpg/newrelic-infra.gpg 
-    dest: /etc/apt/keyrings/newrelic-infra.gpg
+    dest: /etc/apt/keyrings/newrelic-infra.asc
     owner: root
     group: root
     mode: '0444'
