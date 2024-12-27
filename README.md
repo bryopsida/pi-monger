@@ -26,11 +26,16 @@ Actively maintain means the plays are idempotent and intended to be run on a cro
 - [x] Implement role that uses complianceascode security content and oscap to harden system
 - [x] Implement java role for installing and maintaining a java install
 - [ ] Implement node-red role that installs node-red and takes patches on cron
-- [ ] Implement monitoring role that reports system information to an external system
+- [x] Implement monitoring role that reports system information to an external syste
+- [ ] Implement falco role
+  - [x] Falco service install
+  - [ ] Can manage falco rules
+- [ ] Implement cilium mesh role
+- [ ] Implement k3s role
 - [ ] Implement envoy role that installs reverse proxy
-- [ ] Implement traefik role alternative to envoy
-- [ ] Implement cloudflared role
-- [ ] Implement guacamole role
+- [x] Implement cloudflared role
+- [ ] Implement guacamole client and server roles
+- [ ] Implement firewalld role
 - [x] Disable cloud-init and shred user-data after first pull
 
 ## Running initial ansible-pull
