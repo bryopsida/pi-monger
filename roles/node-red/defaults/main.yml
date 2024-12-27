@@ -11,3 +11,7 @@ node_red_immutable_files:
   - package.json
   - package-lock.json
   - service.mjs
+# node_red_allowed_users: 'user1@gmail.com,user2@gmail.com'
+# node_red_google_client_id: your-client-id
+# node_red_google_client_secret your-client-secret
+# node_red_external_origin: 'https://your-node-red.example.com'
