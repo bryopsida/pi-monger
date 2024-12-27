@@ -1,5 +1,0 @@
----
-- name: Node-RED
-  hosts: all
-  roles:
-    - node-red

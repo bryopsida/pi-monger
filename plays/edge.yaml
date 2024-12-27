@@ -14,6 +14,8 @@
       when: nodejs_enabled
     - role: java
       when: java_enabled
+    - role: node-red
+      when: node_red_enabled
     - role: cloudflared
       when: cloudflared_enabled
     - role: newrelic
