@@ -28,7 +28,20 @@
     owner: "{{ node_red_uid }}"
     group: "{{ node_red_gid }}"
     mode: '0750'
-
+- name: Create /etc/node-red directory
+  ansible.builtin.file:
+    path: /etc/node-red
+    state: directory
+    owner: "{{ node_red_uid }}"
+    group: "{{ node_red_gid }}"
+    mode: '0750'
+- name: Render Configuration to /etc/node-red
+  ansible.builtin.template:
+    src: .env.j2
+    dest: /etc/node-red/.env
+    owner: "{{ node_red_uid }}"
+    group: "{{ node_red_gid }}"
+    mode: '0440'
 - name: Copy package.json to /opt/{{ node_red_org }}/node-red
   ansible.builtin.copy:
     src: files/app/package.json
