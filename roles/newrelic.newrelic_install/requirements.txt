@@ -14,7 +14,7 @@ click==8.1.8
 click-help-colors==0.9.4
 commonmark==0.9.1
 cookiecutter==2.1.1
-cryptography==43.0.1
+cryptography==43.0.3
 docker==6.0.1
 docker-py==1.10.6
 docker-pycreds==0.4.0
