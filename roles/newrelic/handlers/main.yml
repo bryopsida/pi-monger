@@ -1,0 +1,8 @@
+---
+- name: Reload newrelic-infra service
+  ansible.builtin.systemd:
+    name: newrelic-infra
+    state: restarted
+    enabled: true
+    daemon_reload: true
+    masked: false

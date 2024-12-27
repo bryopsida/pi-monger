@@ -1,0 +1,6 @@
+---
+- name: Add newrelic repository.
+  ansible.builtin.apt_repository:
+    repo: "deb [signed-by=/etc/apt/keyrings/newrelic-infra.gpg] https://download.newrelic.com/infrastructure_agent/linux/apt/ jammy main"
+    state: present
+    filename: 'newrelic-infra'
