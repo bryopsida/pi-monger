@@ -50,3 +50,5 @@
       when: users_enabled
     - role: debug
       when: debug_enabled
+    - role: ufw
+      when: ufw_enabled

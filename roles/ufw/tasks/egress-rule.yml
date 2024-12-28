@@ -1,0 +1,13 @@
+---
+- name: Manage egress rule
+  notify: Reload UFW
+  community.general.ufw:
+    rule: "{{ item.rule }}"
+    to_port: "{{ item.to_port }}"
+    proto: "{{ item.proto }}"
+    comment: "{{ item.comment }}"
+    direction: out
+    to_ip: "{{ target_ip }}"
+  with_items: "{{ item.targets }}"
+  loop_control:
+    loop_var: target_ip

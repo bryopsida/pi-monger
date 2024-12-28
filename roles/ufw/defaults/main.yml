@@ -1,0 +1,20 @@
+ufw_enabled: false
+ufw_default_policy: deny
+ufw_egress_rules: []
+  # - rule: allow
+  #   to_port: 53
+  #   proto: udp
+  #   comment: "Allow Public DNS"
+  #   direction: out
+  #   targets:
+  #     - 8.8.8.8/32
+  #     - 1.1.1.1/32
+ufw_ingress_rules: []
+  # - rule: allow
+  #   to_port: 22
+  #   proto: tcp
+  #   comment: "Allow SSH"
+  #   sources:
+  #     - 10.0.0.0/8
+  #     - 172.16.0.0/12
+  #     - 192.168.0.0/16

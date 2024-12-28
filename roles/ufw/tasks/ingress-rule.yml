@@ -1,0 +1,13 @@
+---
+- name: Manage ingress rule
+  notify: Reload UFW
+  community.general.ufw:
+    rule: "{{ item.rule }}"
+    port: "{{ item.port }}"
+    proto: "{{ item.proto }}"
+    comment: "{{ item.comment }}"
+    direction: in
+    src: "{{ source_ip }}"
+  with_items: "{{ item.sources }}"
+  loop_control:
+    loop_var: source_ip
