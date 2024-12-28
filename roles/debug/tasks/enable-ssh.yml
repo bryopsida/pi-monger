@@ -1,4 +1,8 @@
 ---
+- name: Ensure SSH is installed
+  ansible.builtin.package:
+    name: openssh-server
+    state: present
 - name: Start SSH
   ansible.builtin.systemd:
     name: ssh
@@ -6,6 +10,8 @@
 - name: Allow SSH through firewall
   community.general.ufw:
     rule: allow
-    name: OpenSSH
+    port: 22
+    proto: tcp
+    direction: in
     src: "{{ item}}"
   with_items: "{{ debug_allowed_networks }}"
