@@ -3,10 +3,22 @@
   ansible.builtin.group: "{{ item }}"
   with_items: "{{ users_groups }}"
 - name: Ensure Users
-  ansible.builtin.user: "{{ item}}"
+  ansible.builtin.user: "{{ item }}"
   with_items: "{{ users }}"
+- name: Ensure SSH keys
+  ansible.posix.authorized_key:
+    user: "{{ item.user }}"
+    key: "{{ item.key }}"
+    state: present
+  with_items: "{{ users_ssh_keys }}"
 - name: Revoke users
   ansible.builtin.user:
     name: "{{ item }}"
     state: absent
   with_items: "{{ revoked_users }}"
+- name: Revoke SSH keys
+  ansible.posix.authorized_key:
+    user: "{{ item.user }}"
+    key: "{{ item.key }}"
+    state: absent
+  with_items: "{{ users_revoked_ssh_keys }}"
