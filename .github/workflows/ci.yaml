@@ -1,5 +1,4 @@
 name: CI
-
 on:
   push:
     branches:
@@ -10,9 +9,28 @@ on:
     branches:
       - main
 jobs:
-  build:
+  lint:
     runs-on: ubuntu-latest
-
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+  integration-tests:
+    strategy:
+      matrix:
+        os: [ubuntu-22.04, ubuntu-24.04]
+    concurrency:
+      group: ci-pi-monger
+      cancel-in-progress: false
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
