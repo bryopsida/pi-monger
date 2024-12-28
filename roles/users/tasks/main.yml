@@ -1,0 +1,12 @@
+---
+- name: Ensure Groups
+  ansible.builtin.group: "{{ item }}"
+  with_items: "{{ users_groups }}"
+- name: Ensure Users
+  ansible.builtin.user: "{{ item}}"
+  with_items: "{{ users }}"
+- name: Revoke users
+  ansible.builtin.user:
+    name: "{{ item }}"
+    state: absent
+  with_items: "{{ revoked_users }}"

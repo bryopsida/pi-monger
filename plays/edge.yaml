@@ -22,5 +22,3 @@
       when: newrelic_enabled
     - role: falco
       when: falco_enabled
-    - role: debug
-      when: debug_enabled

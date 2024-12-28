@@ -1,5 +1,5 @@
 ---
 - name: Start SSH
-  ansible.builtin.systemd_service:
+  ansible.builtin.systemd:
     name: ssh
     state: started

@@ -46,5 +46,7 @@
 - name: Add conditional roles
   hosts: all
   roles:
-    - role: cloudflared
-      when: cloudflared_enabled
+    - role: users
+      when: users_enabled
+    - role: debug
+      when: debug_enabled
