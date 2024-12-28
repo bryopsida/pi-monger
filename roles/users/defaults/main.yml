@@ -3,3 +3,12 @@ users_enabled: false
 users: []
 users_groups: []
 users_revoked: []
+users_ssh_keys: []
+
+# - user: test1
+#   key: open ssh pub key
+
+users_revoked_ssh_keys: []
+
+# - user: test1
+#   key: open ssh pub key
