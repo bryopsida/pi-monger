@@ -2,3 +2,8 @@
 - name: Include Ubuntu specific tasks
   include_tasks: ubuntu.yaml
   when: ansible_facts['os_family'] == 'Debian' and ansible_facts['distribution'] == 'Ubuntu'
+- name: Disable and stop sshd
+  ansible.builtin.systemd_service:
+    name: ssh
+    enabled: "{{ hardened_system_sshd_enabled }}"
+    state: "{{ hardened_system_sshd_state }}"

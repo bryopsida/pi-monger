@@ -1,0 +1,4 @@
+---
+- name: Enable ssh
+  ansible.builtin.include_tasks: enable-ssh.yml
+  when: debug_ssh_enabled
