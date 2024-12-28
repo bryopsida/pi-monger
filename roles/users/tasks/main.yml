@@ -15,7 +15,7 @@
   ansible.builtin.user:
     name: "{{ item }}"
     state: absent
-  with_items: "{{ revoked_users }}"
+  with_items: "{{ users_revoked }}"
 - name: Revoke SSH keys
   ansible.posix.authorized_key:
     user: "{{ item.user }}"
