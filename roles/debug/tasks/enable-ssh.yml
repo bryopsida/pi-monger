@@ -3,3 +3,9 @@
   ansible.builtin.systemd:
     name: ssh
     state: started
+- name: Allow SSH through firewall
+  community.general.ufw:
+    rule: allow
+    name: OpenSSH
+    src: "{{ item}}"
+  with_items: "{{ debug_allowed_networks }}"
