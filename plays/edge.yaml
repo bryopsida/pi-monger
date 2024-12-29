@@ -20,7 +20,7 @@
       when: cloudflared_enabled
     - role: newrelic
       when: newrelic_enabled
-    - role: fluent_bit
+    - role: fluent-bit
       when: fluent_bit_enabled
     - role: falco
       when: falco_enabled
