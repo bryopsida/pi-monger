@@ -1,0 +1,9 @@
+---
+- name: ubuntu
+  ansible.builtin.include_tasks:
+    file: ubuntu.yml
+  when: ansible_facts['os_family'] == 'Debian' and ansible_facts['distribution'] == 'Ubuntu'
+- name: Install CouchDB
+  ansible.builtin.package:
+    name: couchdb
+    state: present

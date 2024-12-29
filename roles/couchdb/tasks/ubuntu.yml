@@ -1,0 +1,14 @@
+---
+- name: Download CouchDB's signing key.
+  ansible.builtin.get_url:
+    url: https://couchdb.apache.org/repo/keys.asc
+    dest: /etc/apt/signing-key-couchdb-repo.asc
+    owner: root
+    group: root
+    mode: '0444'
+  register: couchdb_signing_key
+- name: Add CouchDB repository.
+  ansible.builtin.apt_repository:
+    repo: "deb [signed-by={{couchdb_signing_key.dest }}] https://apache.jfrog.io/artifactory/couchdb-deb/ {{ ansible_distribution_release }} main"
+    state: present
+    filename: 'couchdb'
