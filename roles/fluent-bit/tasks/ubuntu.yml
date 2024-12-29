@@ -1,0 +1,14 @@
+---
+- name: Get Fluent-Bit APT Key
+  ansible.builtin.get_url:
+    url: https://packages.fluentbit.io/fluentbit.key
+    dest: /tmp/fluentbit-repo-gpg.asc
+    mode: '0440'
+- name: Trust Fluent-Bit APT Key
+  ansible.builtin.apt_key:
+    file: /tmp/fluentbit-repo-gpg.asc
+    state: present
+- name: Add Fluent-Bit APT Repo
+  ansible.builtin.apt_repository:
+    repo: deb https://packages.fluentbit.io/ubuntu/{{ ansible_distribution_release }} {{ ansible_distribution_release }} main
+    state: present
