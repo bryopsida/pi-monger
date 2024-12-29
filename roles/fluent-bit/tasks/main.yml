@@ -7,3 +7,11 @@
   ansible.builtin.package:
     name: fluent-bit
     state: present
+- name: Render Fluent Bit Configuration
+  ansible.builtin.template:
+    src: fluent-bit.config.j2
+    dest: /etc/fluent-bit/fluent-bit.conf
+    owner: root
+    group: root
+    mode: '0640'
+  notify: Reload Fluent Bit

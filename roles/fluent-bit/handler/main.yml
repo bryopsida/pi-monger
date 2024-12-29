@@ -1,0 +1,7 @@
+---
+- name:  Reload Fluent Bit
+  ansible.builtin.systemd:
+    name: fluent-bit
+    state: restarted
+    enabled: true
+    masked: false
