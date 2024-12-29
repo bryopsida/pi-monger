@@ -1,0 +1,23 @@
+[SERVICE]
+    Flush        1
+    Log_Level    info
+    Parsers_File parsers.conf
+
+{% if newrelic_inputs.kernel.enabled %}
+[INPUT]
+    Name   kmsg
+    Tag    kernel
+{% endif %}
+
+{% if newrelic_inputs.systemd.enabled %}
+[INPUT]
+    Name            systemd
+    Tag             host.*
+{% endif %}
+
+{% if newrelic_outputs.newrelic.enabled %}
+[OUTPUT]
+    Name       newrelic
+    Match      *
+    Api_key {{ newrelic_outputs.newrelic.api_key }}
+{% endif %}

@@ -1,0 +1,10 @@
+fluent_bit_enabled: false
+fluent_bit_inputs:
+  kernel:
+    enabled: true
+  systemd:
+    enabled: true
+fluent_bit_outputs:
+  newrelic:
+    enabled: true
+    # api_key: YOUR_LICENSE_KEY
