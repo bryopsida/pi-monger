@@ -81,21 +81,21 @@
     #
     # storage.backlog.mem_limit 5M
 
-{% if newrelic_inputs.kernel.enabled %}
+{% if fluent_bit_inputs.kernel.enabled %}
 [INPUT]
     Name   kmsg
     Tag    kernel
 {% endif %}
 
-{% if newrelic_inputs.systemd.enabled %}
+{% if fluent_bit_inputs.systemd.enabled %}
 [INPUT]
     Name            systemd
     Tag             host.*
 {% endif %}
 
-{% if newrelic_outputs.newrelic.enabled %}
+{% if fluent_bit_outputs.newrelic.enabled %}
 [OUTPUT]
     Name       newrelic
     Match      *
-    Api_key {{ newrelic_outputs.newrelic.api_key }}
+    Api_key {{ fluent_bit_outputs.newrelic.api_key }}
 {% endif %}
