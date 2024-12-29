@@ -1,5 +1,5 @@
 [SERVICE]
- # Flush
+    # Flush
     # =====
     # set an interval of seconds before to flush records to a destination
     flush        1
@@ -95,7 +95,7 @@
 
 {% if fluent_bit_outputs.newrelic.enabled %}
 [OUTPUT]
-    Name       newrelic
+    Name       nrlogs
     Match      *
     Api_key {{ fluent_bit_outputs.newrelic.api_key }}
 {% endif %}
