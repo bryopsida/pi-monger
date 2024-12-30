@@ -8,4 +8,4 @@
   ansible.builtin.file:
     path: /etc/cloud/cloud-init.disabled
     state: touch
-  when: cloud_init_cloud_folder.stat.isdir
+  when: cloud_init_cloud_folder.stat.isdir is defined and cloud_init_cloud_folder.stat.isdir
