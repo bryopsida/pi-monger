@@ -7,7 +7,7 @@
   ansible.builtin.systemd:
     name: ssh
     state: started
-- name: Check if ufw is installed
+- name: Ensure ufw is installed
   ansible.builtin.package:
     name: ufw
     state: present
