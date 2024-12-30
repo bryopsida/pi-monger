@@ -1,4 +1,8 @@
 ---
+- name: Ensure UFW installed
+  ansible.builtin.package:
+    name: ufw
+    state: present
 - name: Manage UFW State
   community.general.ufw:
     state: "enabled"
