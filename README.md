@@ -37,6 +37,7 @@ Actively maintain means the plays are idempotent and intended to be run on a cro
 - [ ] Implement guacamole client and server roles
 - [ ] Implement firewalld role
 - [x] Disable cloud-init and shred user-data after first pull
+- [ ] Add watch subscription to trigger runs on change instead of cron/polled updates
 
 ## Running initial ansible-pull
 
