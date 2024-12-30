@@ -26,3 +26,12 @@
 - name: Ubuntu
   include_tasks: ubuntu.yml
   when: ansible_facts['os_family'] == 'Debian' and ansible_facts['distribution'] == 'Ubuntu'
+- name: Debian
+  ansible.builtin.include_tasks:
+    file: debian.yml
+  when: ansible_facts['os_family'] == 'Debian' and ansible_facts['distribution'] == 'Debian'
+- name: Install newrelic-infra agent
+  ansible.builtin.package:
+    name: newrelic-infra
+    state: present
+  notify: Reload newrelic-infra service

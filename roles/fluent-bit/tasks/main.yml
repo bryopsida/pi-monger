@@ -3,6 +3,10 @@
   ansible.builtin.include_tasks:
     file: ubuntu.yml
   when: ansible_facts['os_family'] == 'Debian' and ansible_facts['distribution'] == 'Ubuntu'
+- name: ubuntu
+  ansible.builtin.include_tasks:
+    file: debian.yml
+  when: ansible_facts['os_family'] == 'Debian' and ansible_facts['distribution'] == 'Debian'
 - name: Install Fluent Bit
   ansible.builtin.package:
     name: fluent-bit

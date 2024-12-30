@@ -1,0 +1,14 @@
+---
+- name: Download FluentBits's signing key.
+  ansible.builtin.get_url:
+    url: https://packages.fluentbit.io/fluentbit.key
+    dest: /etc/apt/signing-key-fluentbit-repo.asc
+    owner: root
+    group: root
+    mode: '0444'
+  register: fluentbit_signing_key
+- name: Add Fluent-Bit APT Repo
+  ansible.builtin.apt_repository:
+    repo: deb [signed-by={{fluentbit_signing_key.dest }}] https://packages.fluentbit.io/debian/{{ ansible_distribution_release }} {{ ansible_distribution_release }} main
+    state: present
+    filename: 'fluentbit'
