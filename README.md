@@ -25,17 +25,18 @@ Actively maintain means the plays are idempotent and intended to be run on a cro
 - [x] Implement nodejs role for installing and maintaining a node.js lts version
 - [x] Implement role that uses complianceascode security content and oscap to harden system
 - [x] Implement java role for installing and maintaining a java install
-- [ ] Implement node-red role that installs node-red and takes patches on cron
+- [x] Implement node-red role that installs node-red and takes patches on cron
 - [x] Implement monitoring role that reports system information to an external syste
 - [ ] Implement falco role
   - [x] Falco service install
   - [ ] Can manage falco rules
-- [ ] Implement cilium mesh role
 - [ ] Implement k3s role
 - [ ] Implement envoy role that installs reverse proxy
+  - [ ] Add ability to manage/define virtual hosts and SNI routing.
 - [x] Implement cloudflared role
-- [ ] Implement guacamole client and server roles
-- [ ] Implement firewalld role
+- [x] Implement firewalld role
+- [ ] Implement role to manage static hostnames /etc/hosts
+- [ ] Implement role to manage static ip addresses via netplan
 - [x] Disable cloud-init and shred user-data after first pull
 - [ ] Add watch subscription to trigger runs on change instead of cron/polled updates
 
