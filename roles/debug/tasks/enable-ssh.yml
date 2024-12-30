@@ -7,6 +7,10 @@
   ansible.builtin.systemd:
     name: ssh
     state: started
+- name: Check if ufw is installed
+  ansible.builtin.package:
+    name: ufw
+    state: present
 - name: Allow SSH through firewall
   community.general.ufw:
     rule: allow
