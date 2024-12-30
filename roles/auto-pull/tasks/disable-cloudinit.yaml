@@ -1,6 +1,11 @@
 ---
+- name: Check if /etc/cloud exists
+  ansible.builtin.stat:
+    path: /etc/cloud
+  register: cloud_init_cloud_folder
 - name:  Disable cloud-init
   become: true
   ansible.builtin.file:
     path: /etc/cloud/cloud-init.disabled
     state: touch
+  when: cloud_init_cloud_folder.stat.isdir
