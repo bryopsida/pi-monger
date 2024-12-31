@@ -32,6 +32,8 @@ Actively maintain means the plays are idempotent and intended to be run on a cro
   - [ ] Can manage falco rules
 - [ ] Implement pi-hole role
 - [ ] Implement adguard home role
+- [ ] Investigate and implement FDE if possible
+- [ ] Implement Clevis role
 - [ ] Implement k3s role
 - [ ] Implement envoy role that installs reverse proxy
   - [ ] Add ability to manage/define virtual hosts and SNI routing.
