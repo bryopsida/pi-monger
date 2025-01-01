@@ -7,8 +7,8 @@
   {% if zone.cache %}
   cache
   {% endif %}
-  forward . {% if zone.upstream_dot %}tls://{% endif %}{{ zone.addresses | join(' ') }}{% raw %} {{%endraw %}
-  {% if zone.upstream_dot %}
+  forward . {% if zone.is_dot %}tls://{% endif %}{{ zone.addresses | join(' ') }}{% raw %} {{%endraw %}
+  {% if zone.is_dot %}
   tls_servername {{ zone.upstream_hostname }}
   {% endif %}
   {% raw %}}{%endraw %}
