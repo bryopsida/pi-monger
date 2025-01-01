@@ -1,0 +1,21 @@
+---
+coredns_enabled: false
+coredns_uid: "13372"
+coredns_gid: "13372"
+coredns_version: 1.12.0
+coredns_amd64_sha256: c835bd5e9ba9a98df9631e5a3f0effc60f03ccb9c687c91ae2c85ebf7ab1fc34
+coredns_arm64_sha256: 4946f3110fee46e53acfaef51ebc1a5a844b50411974fd652fa6935128f56271
+coredns_zones:
+  - zone: .
+    is_dot: true
+    addresses:
+      - 1.1.1.2
+      - 1.0.0.2
+      - 2606:4700:4700::1112
+      - 2606:4700:4700::1002
+    hostname: security.cloudflare-dns.com
+    cache: true
+    log: true
+    dnssec: true
+    health: true
+    metrics: true

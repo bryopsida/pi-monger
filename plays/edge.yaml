@@ -10,6 +10,8 @@
 - name: Edge
   hosts: all
   roles:
+    - role: coredns
+      when: coredns_enabled
     - role: nodejs
       when: nodejs_enabled
     - role: java

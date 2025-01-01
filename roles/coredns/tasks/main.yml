@@ -1,0 +1,47 @@
+---
+- name: Create coredns group
+  ansible.builtin.group:
+    name: coredns
+    gid: "{{ coredns_gid }}"
+- name: Create coredns user
+  ansible.builtin.user:
+    name: coredns
+    uid: "{{ coredns_uid }}"
+    group: coredns
+    shell: /usr/sbin/nologin
+- name: Create coredns log dir
+  ansible.builtin.file:
+    path: /var/log/coredns
+    state: directory
+    owner: coredns
+    group: coredns
+    mode: '0755'
+- name: Create coredns config dir
+  ansible.builtin.file:
+    path: /etc/coredns
+    state: directory
+    owner: coredns
+    group: coredns
+    mode: '0700'
+- name: Create coredns working dir
+  ansible.builtin.file:
+    path: /var/lib/coredns
+    state: directory
+    owner: coredns
+    group: coredns
+    mode: '0700'
+- name: Render coredns Corefile
+  ansible.builtin.template:
+    src: Corefile.j2
+    dest: /etc/coredns/Corefile
+    owner: coredns
+    group: coredns
+    mode: '0600'
+- name: Render coredns service
+  notify: Reload coredns service
+  ansible.builtin.template:
+    src: coredns.service.j2
+    dest: /etc/systemd/system/coredns.service
+    owner: root
+    group: root
+    mode: '0600'

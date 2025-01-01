@@ -1,0 +1,9 @@
+---
+- name: Reload coredns service
+  ansible.builtin.systemd:
+    daemon_reload: yes
+    state: restarted
+    name: coredns
+    enabled: yes
+    masked: no
+    scope: system

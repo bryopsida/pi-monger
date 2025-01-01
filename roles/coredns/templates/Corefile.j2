@@ -1,0 +1,16 @@
+{% for zone in coredns_zones %}
+{% for transport in zone.transports %}
+{% if transport.doh %}https://{% endif %}{% if transport.dot %}dot://{% endif %}{{ zone.zone }}:{{ zone.port }}{% raw %} {{%endraw %}
+  {% if transport.doh or transport.dot %}
+  tls {{ transport.cert_path }} {{ transport.key_path }}
+  {% endif %}
+  {% if zone.cache %}
+  cache
+  {% endif %}
+  forward . {% if zone.upstream_dot %}tls://{% endif %}{{ zone.addresses | join(' ') }}{% raw %} {{%endraw %}
+  {% if zone.upstream_dot %}
+  tls_servername {{ zone.upstream_hostname }}
+  {% endif %}
+  {% raw %}}{%endraw %}
+{% raw %}}{%endraw %}
+{% endfor %}
