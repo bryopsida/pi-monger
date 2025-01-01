@@ -1,0 +1,10 @@
+---
+- name: Render Netplan
+  ansible.builtin.template:
+    src: netplan.yaml.j2
+    dest: "{{ netplan_config_path }}"
+    mode: '0640'
+  notify: Apply Netplan
+  tags:
+    - netplan
+    - netplan_render

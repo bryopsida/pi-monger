@@ -1,0 +1,14 @@
+---
+netplan_enabled: false
+netplan_config_path: /etc/netplan/50-cloud-init.yaml
+netplan_config:
+  network:
+    version: 2
+    renderer: networkd
+    ethernets:
+      eth0:
+        accept-ra: true
+        dhcp4: true
+        dhcp6: false
+        ipv6-privacy: true
+        optional: false
