@@ -1,0 +1,9 @@
+---
+hosts_enabled: false
+hosts_aliases: []
+# hosts_aliases:
+#   - address: 127.0.0.1
+#     hostnames:
+#       - localhost
+#       - computer
+#       - etc1

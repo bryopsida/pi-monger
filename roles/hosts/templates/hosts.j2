@@ -1,0 +1,13 @@
+127.0.1.1 {{ ansible_fqdn }} {{ ansible_hostname }}
+127.0.0.1 localhost
+
+# managed by pi-monger
+{% for alias in hosts_aliases %}
+{{ alias.address }} {{ alias.hostnames | join(' ') }}
+{% endfor %}
+# end of managed section
+
+# The following lines are desirable for IPv6 capable hosts
+::1 localhost ip6-localhost ip6-loopback
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
