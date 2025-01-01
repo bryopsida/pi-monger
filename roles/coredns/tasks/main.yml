@@ -63,6 +63,7 @@
     dest: /usr/local/bin
 - name: Set coredns permissions
   ansible.builtin.file:
+    path: /usr/local/bin/coredns
     owner: root
     group: root
     mode: '0755'
