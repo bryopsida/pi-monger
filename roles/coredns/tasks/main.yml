@@ -57,3 +57,12 @@
     dest: /dev/shm/coredns.tar.gz
     checksum: "sha256:{{ coredns_amd64_sha256 }}"
   when: ansible_architecture == 'x86_64'
+- name: Extract coredns
+  ansible.builtin.unarchive:
+    src: /dev/shm/coredns.tar.gz
+    dest: /usr/local/bin
+- name: Set coredns permissions
+  ansible.builtin.file:
+    owner: root
+    group: root
+    mode: '0755'
