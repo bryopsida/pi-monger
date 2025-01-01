@@ -6,7 +6,21 @@ coredns_version: 1.12.0
 coredns_amd64_sha256: c835bd5e9ba9a98df9631e5a3f0effc60f03ccb9c687c91ae2c85ebf7ab1fc34
 coredns_arm64_sha256: 4946f3110fee46e53acfaef51ebc1a5a844b50411974fd652fa6935128f56271
 coredns_zones:
-  - zone: .
+  - zone: "."
+    transports:
+      - dot: true
+        doh: false
+        port: 853
+        cert_path: cert.pem
+        key_path: key.pem
+      - dot: false
+        doh: true
+        port: 443
+        cert_path: cert.pem
+        key_path: key.pem
+      - dot: false
+        doh: false
+        port: 53
     is_dot: true
     addresses:
       - 1.1.1.2
