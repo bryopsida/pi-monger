@@ -45,3 +45,15 @@
     owner: root
     group: root
     mode: '0600'
+- name: Download release archive
+  ansible.builtin.get_url:
+    url: "https://github.com/coredns/coredns/releases/download/v{{ 1.12.0 }}/coredns_{{ 1.12.0 }}_linux_arm64.tgz"
+    dest: /dev/shm/coredns.tar.gz
+    checksum: "sha256:{{ coredns_arm64_sha256 }}"
+  when: ansible_architecture != 'x86_64'
+- name: Download release archive
+  ansible.builtin.get_url:
+    url: "https://github.com/coredns/coredns/releases/download/v{{ 1.12.0 }}/coredns_{{ 1.12.0 }}_linux_amd64.tgz"
+    dest: /dev/shm/coredns.tar.gz
+    checksum: "sha256:{{ coredns_amd64_sha256 }}"
+  when: ansible_architecture == 'x86_64'
