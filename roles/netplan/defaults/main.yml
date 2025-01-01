@@ -1,5 +1,5 @@
 ---
-netplan_enabled: false
+netplan_enabled: true
 netplan_config_path: /etc/netplan/50-cloud-init.yaml
 netplan_config:
   network:

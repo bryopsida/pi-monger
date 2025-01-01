@@ -9,11 +9,14 @@
 - name: Basic
   hosts: all
   roles:
+    - role: netplan
+      when: netplan_enabled
     - updated-system
     - schedule-reboot
     - role: auto-pull
       vars:
         auto_pull_play: "{{ play }}"
+
 
 - name: Initial harden
   hosts: all
