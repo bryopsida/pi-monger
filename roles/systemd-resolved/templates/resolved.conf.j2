@@ -24,6 +24,7 @@
 DNS={% for dns in systemd_resolved_dns %}
 {{ dns.address }}#{{ dns.hostname }}{% if not loop.last %} {% endif %}
 {% endfor %}
+
 #FallbackDNS=
 #Domains=
 DNSSEC={{ systemd_resolved_dnssec }}
