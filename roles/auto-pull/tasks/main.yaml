@@ -17,3 +17,11 @@
   ansible.builtin.include_tasks: disable-cloudinit.yaml
 - name: Shred userdata
   ansible.builtin.include_tasks: shred-userdata.yaml
+- name: Pull copy operations
+  ansible.builtin.copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: "{{ item.owner }}"
+    group: "{{ item.group }}"
+    mode: "{{ item.mode }}"
+  with_items: "{{ auto_pull_copy_operations }}"

@@ -2,11 +2,16 @@
 set -e
 {% if auto_pull_secure_copy_enabled %}
 cleanup() {
-  find {{ auto_pull_shred_folder }} -type f -exec shred -uvz {} \;
-  rm -fr {{ auto_pull_shred_folder }}
+  {% for shred_folder in auto_pull_shred_folders %}
+  find {{ shred_folder }} -type f -exec shred -uvz {} \;
+  rm -fr {{ shred_folder }}
+  {% endfor %}
 }
 trap cleanup EXIT
 scp -r -i {{ auto_pull_secure_copy_key }} {{ auto_pull_secure_copy_user }}@{{ auto_pull_secure_copy_host }}:{{ auto_pull_secure_copy_remote_path }} {{ auto_pull_secure_copy_local_path }}
+{% if auto_pull_secure_copy_certs_enabled %}
+scp -r -i {{ auto_pull_secure_copy_key }} {{ auto_pull_secure_copy_user }}@{{ auto_pull_secure_copy_host }}:{{ auto_pull_secure_copy_certs_remote_path }} {{ auto_pull_secure_copy_certs_local_path }}
+{% endif %}
 /usr/bin/ansible-pull -U {{ auto_pull_repo_url }} -C {{ auto_pull_repo_version }} -i {{ auto_pull_inventory }} --vault-password-file {{ auto_pull_vault_password_file }} {{ auto_pull_play }}
 {% else %}
 /usr/bin/ansible-pull -U {{ auto_pull_repo_url }} -C {{ auto_pull_repo_version }} -i {{ auto_pull_inventory }} {{ auto_pull_play }}
