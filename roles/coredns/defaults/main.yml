@@ -13,14 +13,17 @@ coredns_zones:
         port: 853
         cert_path: cert.pem
         key_path: key.pem
+        interface: eth0
       - dot: false
         doh: true
         port: 443
         cert_path: cert.pem
         key_path: key.pem
+        interface: eth0
       - dot: false
         doh: false
         port: 53
+        interface: eth0
     is_dot: true
     addresses:
       - 1.1.1.2
