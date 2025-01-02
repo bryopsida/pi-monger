@@ -38,13 +38,13 @@
     group: coredns
     mode: '0600'
 - name: Render coredns service
-  notify: Reload coredns service
   ansible.builtin.template:
     src: coredns.service.j2
     dest: /etc/systemd/system/coredns.service
     owner: root
     group: root
     mode: '0600'
+  notify: Reload coredns service
 - name: Download release archive
   ansible.builtin.get_url:
     url: "https://github.com/coredns/coredns/releases/download/v{{ coredns_version }}/coredns_{{ coredns_version }}_linux_arm64.tgz"
@@ -61,6 +61,7 @@
   ansible.builtin.unarchive:
     src: /dev/shm/coredns.tar.gz
     dest: /usr/local/bin
+  notify: Reload coredns service
 - name: Set coredns permissions
   ansible.builtin.file:
     path: /usr/local/bin/coredns
