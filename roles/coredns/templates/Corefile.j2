@@ -1,7 +1,9 @@
 {% for zone in coredns_zones %}
 {% for transport in zone.transports %}
 {% if transport.doh %}https://{% endif %}{% if transport.dot %}tls://{% endif %}{{ zone.zone }}:{{ transport.port }}{% raw %} {{%endraw %}
-  bind {{ transport.interface }}
+  {% for interface in transport.interfaces %}
+    bind {{ interface }}
+  {% endfor %}
 
   {% if transport.doh or transport.dot %}
     tls {{ transport.cert_path }} {{ transport.key_path }}
