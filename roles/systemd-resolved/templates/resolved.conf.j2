@@ -26,10 +26,8 @@ DNS=
 #Domains={% for dns in systemd_resolved_dns %}
 {{ dns.address }}#{{ dns.hostname }}{% if not loop.last %} {% endif %}
 {% endfor %}
-#DNSSEC=allow-downgrade
-DNSOverTLS=opportunistic
-#DNS=192.168.50.1#quasimodo.internal.curium.rocks 2600:1700:1881:58ff:2e0:67ff:fe15:ceb7#quasimodo.internal.curium.rocks
-
+DNSSEC={{ systemd_resolved_dnssec }}
+DNSOverTLS={{ systemd_resolved_dot }}
 #FallbackDNS=
 #Domains=
 #DNSSEC=True
