@@ -13,6 +13,8 @@
       when: netplan_enabled
     - role: hosts
       when: hosts_enabled
+    - role: systemd-resolved
+      when: systemd_resolved_enabled
     - updated-system
     - schedule-reboot
     - role: users

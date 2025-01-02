@@ -1,0 +1,13 @@
+---
+systemd_resolved_enabled: false
+systemd_resolved_dot: opportunistic
+systemd_resolved_dnssec: no
+systemd_resolved_dns:
+  - address: 1.1.1.2
+    hostname: security.cloudflare-dns.com
+  - address: 1.0.0.2
+    hostname: security.cloudflare-dns.com
+  - address: 2606:4700:4700::1112
+    hostname: security.cloudflare-dns.com
+  - address: 2606:4700:4700::1002
+    hostname: security.cloudflare-dns.com
