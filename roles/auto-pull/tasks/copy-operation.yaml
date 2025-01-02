@@ -1,6 +1,7 @@
 ---
 - name: Ensure dest directory exists
   ansible.builtin.file:
+    path: "{{ item.dest | dirname }}"
     state: directory
     owner: "{{ item.owner }}"
     group: "{{ item.group }}"
