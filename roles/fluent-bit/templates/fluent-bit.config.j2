@@ -20,7 +20,7 @@
     # - trace
     #
     # by default 'info' is set, that means it includes 'error' and 'warning'.
-    log_level    info
+    log_level    awrning
 
     # Parsers File
     # ============
@@ -92,6 +92,12 @@
     Name            systemd
     Tag             host.*
 {% endif %}
+
+[FILTER]
+    Name                modify
+    Match               *
+    Condition           Key_does_not_exist hostname
+    Add                 hostname ${HOSTNAME}
 
 {% if fluent_bit_outputs.newrelic.enabled %}
 [OUTPUT]
