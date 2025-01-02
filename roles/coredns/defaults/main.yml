@@ -24,13 +24,14 @@ coredns_zones:
         doh: false
         port: 53
         interface: eth0
-    is_dot: true
-    addresses:
-      - 1.1.1.2
-      - 1.0.0.2
-      - 2606:4700:4700::1112
-      - 2606:4700:4700::1002
-    hostname: security.cloudflare-dns.com
+    forwards:
+      - addresses:
+          - 1.1.1.2
+          - 1.0.0.2
+          - 2606:4700:4700::1112
+          - 2606:4700:4700::1002
+        hostname: security.cloudflare-dns.com
+        is_dot: true
     cache: true
     log: true
     dnssec: true

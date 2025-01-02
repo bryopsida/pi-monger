@@ -23,10 +23,11 @@
     prometheus
   {% endif %}
 
-    forward . {% if zone.is_dot %}tls://{% endif %}{{ zone.addresses | join(' ') }}{% raw %} {{%endraw %}
+  {% for forward in zone.forwards %}
+    forward . {% if forward.is_dot %}tls://{% endif %}{{ forward.addresses | join(' ') }}{% raw %} {{%endraw %}
 
-    {% if zone.is_dot %}
-      tls_servername {{ zone.hostname }}
+    {% if forward.is_dot %}
+      tls_servername {{ forward.hostname }}
 
     {% endif %}
   {% raw %}}{%endraw %}
