@@ -7,8 +7,20 @@
     tls {{ transport.cert_path }} {{ transport.key_path }}
   {% endif %}
 
+  {% if zone.log %}
+    log
+  {% endif %}
+
+  {% if zone.health %}
+    log
+  {% endif %}
+
   {% if zone.cache %}
-    cache
+    health
+  {% endif %}
+
+  {% if zone.metrics %}
+    prometheus
   {% endif %}
 
     forward . {% if zone.is_dot %}tls://{% endif %}{{ zone.addresses | join(' ') }}{% raw %} {{%endraw %}
@@ -19,8 +31,15 @@
     {% endif %}
   {% raw %}}{%endraw %}
 
+  {% if zone.dnssec %}
+    dnssec
+  {% endif %}
+
 {% raw %}}{%endraw %}
 
 
 {% endfor %}
 {% endfor %}
+
+    health: true
+    metrics: true
