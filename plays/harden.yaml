@@ -7,8 +7,9 @@
     - role: auto-pull
       vars:
         auto_pull_cron_job_name: "ansible-pull-harden"
-        auto_pull_play: "playsl/harden.yaml"
+        auto_pull_play: "plays/harden.yaml"
         auto_pull_cron_job_minute: "0"
         auto_pull_cron_job_hour: "0"
+        auto_pull_script_path: "ansible-auto-harden-pull.sh"
     # ensure management still runs on schedule
     - role: auto-pull
