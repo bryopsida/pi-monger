@@ -21,7 +21,7 @@ fluent_bit_inputs:
     format: none
 fluent_bit_outputs:
   newrelic:
-    enabled: true
+    enabled: false
     # api_key: YOUR_LICENSE_KEY
   forward:
     enabled: false
