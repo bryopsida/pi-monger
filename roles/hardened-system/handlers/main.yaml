@@ -16,5 +16,11 @@
   ansible.builtin.systemd:
     name: chrony
     masked: false
-    state: started
+    state: restarted
+    enabled: true
+- name: Reload auditd
+  ansible.builtin.systemd:
+    name: auditd
+    masked: false
+    state: restarted
     enabled: true
