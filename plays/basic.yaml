@@ -13,8 +13,6 @@
     - role: users
       when: users_enabled
     - role: auto-pull
-      vars:
-        auto_pull_play: "{{ play }}"
 
 - name: Initial harden
   hosts: all
