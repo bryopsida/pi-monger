@@ -101,7 +101,6 @@
     Listen          {{ fluent_bit_inputs.forward.bind }}
     Port            {{ fluent_bit_inputs.forward.port }}
     Tag_Prefix      {{ fluent_bit_inputs.forward.tag_prefix }}
-    Shared_Key      {{ fluent_bit_inputs.forward.shared_key }}
 {% endif %}
 
 {% if fluent_bit_inputs.syslog.enabled %}
@@ -139,7 +138,6 @@
     Match           *
     Host            {{ fluent_bit_outputs.forward.host }}
     Port            {{ fluent_bit_outputs.forward.port }}
-    Shared_Key      {{ fluent_bit_outputs.forward.shared_key }}
 {% endif %}
 
 {% if fluent_bit_outputs.file.enabled %}
