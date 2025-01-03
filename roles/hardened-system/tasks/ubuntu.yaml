@@ -9,6 +9,7 @@
     - aide
     - auditd
     - audispd-plugins
+    - chrony
   notify: Initialize AIDE
 - name: SCAP Ubuntu 24.04
   ansible.builtin.include_tasks: ubuntu24.yaml
@@ -32,3 +33,11 @@
     group: root
     mode: '0640'
   notify: Reload auditd
+- name: Render chrony.conf
+  ansible.builtin.template:
+    src: chrony.conf.j2
+    dest: /etc/chrony/chrony.conf
+    owner: root
+    group: root
+    mode: '0640'
+  notify: Reload Chrony

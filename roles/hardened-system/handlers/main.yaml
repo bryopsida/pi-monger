@@ -12,3 +12,9 @@
     owner: root
     group: root
     mode: '0400'
+- name: Reload Chrony
+  ansible.builtin.systemd:
+    name: chrony
+    masked: false
+    state: started
+    enabled: true

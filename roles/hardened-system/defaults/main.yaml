@@ -12,3 +12,4 @@ hardened_system_profile: xccdf_org.ssgproject.content_profile_cis_level2_server
 hardened_system_scap_content_checksum: 988fa15d0a8131537b6ab995dd96ffa57db36352c4142bc1a5eb95f0a50b86fa
 hardened_system_auditd_remote_server: log
 hardened_system_auditd_remote_port: 5170
+hardend_system_ntp_server: time
