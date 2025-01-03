@@ -1,17 +1,14 @@
 ---
-- name: Set Vars
-  hosts: all
-  tasks:
-    - name: Set play var if not defined
-      set_fact:
-        play: "{{ play | default('plays/harden.yaml') }}"
 - name: Harden
   hosts: all
   roles:
     - hardened-system
+    # ensure harden runs on schedule
     - role: auto-pull
       vars:
         auto_pull_cron_job_name: "ansible-pull-harden"
-        auto_pull_play: "{{ play }}"
+        auto_pull_play: "playsl/harden.yaml"
         auto_pull_cron_job_minute: "0"
         auto_pull_cron_job_hour: "0"
+    # ensure management still runs on schedule
+    - role: auto-pull
