@@ -96,7 +96,7 @@ license_key: {{ newrelic_license_key }}
 #            to New Relic. To fine-tune which processes you want to monitor,
 #            configure include_matching_metrics.
 #
-#enable_process_metrics: false
+enable_process_metrics: true
 #
 
 #
@@ -143,10 +143,10 @@ license_key: {{ newrelic_license_key }}
 # Tip      : Run the agent in debug mode only for troubleshooting. To disable
 #            debug logging, set the level to info and restart the agent.
 # Tip      : The following configuration will only log the entries with the field integration_name=nri-flex or integration_name=nri-powerdns
-log:
-  forward: true
-  level: smart
-  format: json
+#log:
+#  forward: false
+#  level: smart
+#  format: json
 #  file: /dev/stdout
 #  format: json
 #  level: smart

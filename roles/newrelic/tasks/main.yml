@@ -15,14 +15,6 @@
     owner: root
     group: root
     mode: 0700
-- name: Render journald logging settings
-  ansible.builtin.template:
-    src: extensions/logging/systemd.yml.j2
-    dest: /etc/newrelic-infra/logging.d/systemd.yml
-    owner: root
-    group: root
-    mode: 0600
-  notify: Reload newrelic-infra service
 - name: Ubuntu
   include_tasks: ubuntu.yml
   when: ansible_facts['os_family'] == 'Debian' and ansible_facts['distribution'] == 'Ubuntu'
