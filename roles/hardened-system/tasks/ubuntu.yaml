@@ -6,9 +6,29 @@
   loop:
     - apt-transport-https
     - ca-certificates
+    - aide
+    - auditd
+    - audispd-plugins
+  notify: Initialize AIDE
 - name: SCAP Ubuntu 24.04
   ansible.builtin.include_tasks: ubuntu24.yaml
   when: ansible_facts['os_family'] == 'Debian' and ansible_facts['distribution'] == 'Ubuntu' and ansible_facts['distribution_version'] == '24.04'
 - name: SCAP Ubuntu 22.04
   ansible.builtin.include_tasks: ubuntu22.yaml
   when: ansible_facts['os_family'] == 'Debian' and ansible_facts['distribution'] == 'Ubuntu' and ansible_facts['distribution_version'] == '22.04'
+- name: Render au-remote.conf
+  ansible.builtin.template:
+    src: au-remote.conf.j2
+    dest: /etc/audit/plugins.d/au-remote.conf
+    owner: root
+    group: root
+    mode: '0640'
+  notify: Reload auditd
+- name: Render audisp-remote.conf
+  ansible.builtin.template:
+    src: audisp-remote.conf.j2
+    dest: /etc/audit/audisp-remote.conf
+    owner: root
+    group: root
+    mode: '0640'
+  notify: Reload auditd
