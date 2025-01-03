@@ -6,7 +6,9 @@
 - name: Start SSH
   ansible.builtin.systemd:
     name: ssh
+    enabled: true
     state: started
+    masked: false
 - name: Ensure ufw is installed
   ansible.builtin.package:
     name: ufw
