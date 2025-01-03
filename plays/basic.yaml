@@ -1,11 +1,4 @@
 ---
-- name: Set Vars
-  hosts: all
-  tasks:
-    - name: Set play var if not defined
-      set_fact:
-        play: "{{ play | default('plays/basic.yaml') }}"
-
 - name: Basic
   hosts: all
   roles:

@@ -1,10 +1,4 @@
 ---
-- name: Set Vars
-  hosts: all
-  tasks:
-    - name: Set play var if not defined
-      set_fact:
-        play: "{{ play | default('plays/edge.yaml') }}"
 - name: Basic
   ansible.builtin.import_playbook: basic.yaml
 - name: Edge
