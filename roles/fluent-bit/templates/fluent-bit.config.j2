@@ -101,6 +101,7 @@
     Listen          {{ fluent_bit_inputs.forward.bind }}
     Port            {{ fluent_bit_inputs.forward.port }}
     Tag_Prefix      {{ fluent_bit_inputs.forward.tag_prefix }}
+    Threaded        true
 {% endif %}
 
 {% if fluent_bit_inputs.syslog.enabled %}
@@ -147,4 +148,5 @@
     Path            {{ fluent_bit_outputs.file.path }}
     Format          {{ fluent_bit_outputs.file.format }}
     MkDir           {{ fluent_bit_outputs.file.mkdir }}
+    Workers         {{ ansible_processor_vcpus }}
 {% endif %}
