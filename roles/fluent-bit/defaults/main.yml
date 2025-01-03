@@ -4,7 +4,32 @@ fluent_bit_inputs:
     enabled: true
   systemd:
     enabled: true
+  forward:
+    enabled: false
+    port: 24224
+    bind: "0.0.0.0"
+    tag_prefix: "fb_forward."
+    shared_key: "changeit"
+  syslog:
+    enabled: false
+    port: 514
+    bind: "0.0.0.0"
+  tcp:
+    enabled: false
+    port: 5170
+    bind: "0.0.0.0"
+    format: none
 fluent_bit_outputs:
   newrelic:
     enabled: true
     # api_key: YOUR_LICENSE_KEY
+  forward:
+    enabled: false
+    host: "log"
+    port: 24224
+    shared_key: "changeit"
+  file:
+    enabled: false
+    path: /var/log/fluent-bit
+    format: "out_file"
+    mkdir: true

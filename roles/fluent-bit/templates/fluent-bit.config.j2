@@ -89,8 +89,35 @@
 
 {% if fluent_bit_inputs.systemd.enabled %}
 [INPUT]
-    Name            systemd
-    Tag             host.*
+    Name              systemd
+    Tag               host.*
+    Strip_Underscores On
+    Lowercase         On
+{% endif %}
+
+{% if fluent_bit_inputs.forward.enabled %}
+[INPUT]
+    Name            forward
+    Listen          {{ fluent_bit_inputs.forward.bind }}
+    Port            {{ fluent_bit_inputs.forward.port }}
+    Tag_Prefix      {{ fluent_bit_inputs.forward.tag_prefix }}
+    Shared_Key      {{ fluent_bit_inputs.forward.shared_key }}
+{% endif %}
+
+{% if fluent_bit_inputs.syslog.enabled %}
+[INPUT]
+    Name              syslog
+    Mode              tcp
+    Listen            {{ fluent_bit_inputs.syslog.bind }}
+    Port              {{ fluent_bit_inputs.syslog.port }}
+{% endif %}
+
+{% if fluent_bit_inputs.tcp.enabled %}
+[INPUT]
+    Name              tcp
+    Listen            {{ fluent_bit_inputs.tcp.bind }}
+    Port              {{ fluent_bit_inputs.tcp.port }}
+    Format            {{ fluent_bit_inputs.tcp.format }}
 {% endif %}
 
 [FILTER]
@@ -104,4 +131,22 @@
     Name       nrlogs
     Match      *
     Api_key {{ fluent_bit_outputs.newrelic.api_key }}
+{% endif %}
+
+{% if fluent_bit_outputs.forward.enabled %}
+[OUTPUT]
+    Name            forward
+    Match           *
+    Host            {{ fluent_bit_outputs.forward.host }}
+    Port            {{ fluent_bit_outputs.forward.port }}
+    Shared_Key      {{ fluent_bit_outputs.forward.shared_key }}
+{% endif %}
+
+{% if fluent_bit_outputs.file.enabled %}
+[OUTPUT]
+    Name            file
+    Match           *
+    Path            {{ fluent_bit_outputs.file.path }}
+    Format          {{ fluent_bit_outputs.file.format }}
+    MkDir           {{ fluent_bit_outputs.file.mkdir }}
 {% endif %}
