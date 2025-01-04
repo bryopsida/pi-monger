@@ -23,10 +23,10 @@
     - role: falco
       when: falco_enabled
     - role: wazuh-indexer
-      when: wazuh_indexer_enabled
+      when: wazuh_indexer_enabled is defined and wazuh_indexer_enabled
     - role: ansible-wazuh-manager
-      when: wazuh_manager_enabled
+      when: wazuh_manager_enabled is defined and wazuh_manager_enabled
     - role: wazuh-dashboard
-      when: wazuh_dashboard_enabled
+      when: wazuh_dashboard_enabled is defined and wazuh_dashboard_enabled
     - role: ansible-wazuh-agent
-      when: wazuh_agent_enabled
+      when: wazuh_agent_enabled is defined and wazuh_agent_enabled
