@@ -4,3 +4,6 @@
 [submodule "wazuh"]
 	path = wazuh
 	url = https://github.com/wazuh/wazuh-ansible.git
+[submodule "k3s"]
+	path = k3s
+	url = https://github.com/k3s-io/k3s-ansible.git
