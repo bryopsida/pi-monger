@@ -7,3 +7,6 @@
 [submodule "k3s"]
 	path = k3s
 	url = https://github.com/k3s-io/k3s-ansible.git
+[submodule "kubespray"]
+	path = kubespray
+	url = https://github.com/kubernetes-sigs/kubespray.git
