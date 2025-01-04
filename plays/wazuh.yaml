@@ -2,11 +2,11 @@
   - name: Basic
     ansible.builtin.import_playbook: edge.yaml
 # Certificates generation
-  - hosts: aio
+  - hosts: all
     roles:
       - role: wazuh-indexer
         perform_installation: false
-    become: no
+    become: false
     #become_user: root
     vars:
       indexer_node_master: true
@@ -19,8 +19,8 @@
     tags:
       - generate-certs
 # Single node
-  - hosts: aio
-    become: yes
+  - hosts: all
+    become: true
     become_user: root
     roles:
       - role: wazuh-indexer
