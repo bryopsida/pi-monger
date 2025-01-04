@@ -1,0 +1,10 @@
+---
+- name: Basic
+  ansible.builtin.import_playbook: basic.yaml
+- name: Edge
+  ansible.builtin.import_playbook: edge.yaml
+- name: DNS
+  hosts: all
+  roles:
+    - role: coredns
+      when: coredns_enabled

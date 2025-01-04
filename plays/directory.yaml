@@ -1,0 +1,10 @@
+---
+- name: Basic
+  ansible.builtin.import_playbook: basic.yaml
+- name: Edge
+  ansible.builtin.import_playbook: edge.yaml
+- name: Directory Services
+  hosts: all
+  roles:
+    - role: samba
+      when: samba_enabled
