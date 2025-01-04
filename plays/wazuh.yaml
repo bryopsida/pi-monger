@@ -10,6 +10,7 @@
     #become_user: root
     vars:
       indexer_node_master: true
+      certs_gen_tool_version: "4.10"
       instances:
         node1:
           name: node-1       # Important: must be equal to indexer_node_name.
