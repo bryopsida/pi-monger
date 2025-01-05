@@ -20,7 +20,7 @@
   notify: Reload couchdb
 - name: Ensure /var/run/couchdb exists
   ansible.builtin.file:
-    user: couchdb
+    owner: couchdb
     group: couchdb
     state: directory
     mode: '0750'
