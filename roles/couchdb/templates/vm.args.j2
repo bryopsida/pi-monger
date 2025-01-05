@@ -44,8 +44,7 @@
 # Which interfaces should the node listen on?
 -kernel inet_dist_use_interface {127,0,0,1}
 
-# Tell kernel and SASL not to log anything
--kernel error_logger silent
+-kernel error_logger {{ couchdb_erlang_log_level }}
 -sasl sasl_error_logger false
 
 # This will toggle to true in Erlang 25+. However since we don't use global

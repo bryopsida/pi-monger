@@ -14,3 +14,4 @@ couchdb_fips_mode: false
 # couchdb_admin_password_has: -pbkdf2 hash string
 couchdb_log_writer: journald
 couchdb_log_level: info
+couchdb_erlang_log_level: info
