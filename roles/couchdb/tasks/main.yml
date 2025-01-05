@@ -18,10 +18,20 @@
     src: vm.args.j2
     dest: /opt/couchdb/etc/vm.args
   notify: Reload couchdb
-- name: Ensure /var/run/couchdb exists
+- name: Ensure correct owners
   ansible.builtin.file:
-    path: /var/run/couchdb
+    path: "{{ item.path}}"
     owner: couchdb
     group: couchdb
-    state: directory
-    mode: '0750'
+    recurse: "{{ item.recurse }}"
+  with_items:
+    - path: /var/run/couchdb
+      recurse: true
+    - path: /var/lib/couchdb
+      recurse: true
+    - path: /opt/couchdb
+      recurse: true
+    - path: /var/log/couchdb
+      recurse: true
+    - path: /etc/couchdb
+      recurse: true
