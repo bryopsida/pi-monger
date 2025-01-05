@@ -7,6 +7,16 @@
 [couchdb]
 ;max_document_size = 4294967296 ; bytes
 ;os_process_timeout = 5000
+uuid = {{ couchdb_uuid }}
+single_node = {{ couchdb_single_node }}
+
+{% if not couchdb_single_node %}
+
+[cluster]
+q = {{ couchdb_cluster_partitions }}
+n = {{ couchdb_cluster_replicas }}
+
+{% endif %}
 
 [couch_peruser]
 ; If enabled, couch_peruser ensures that a private per-user database

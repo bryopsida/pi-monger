@@ -13,3 +13,8 @@
     src: pi-monger.ini.j2
     dest: /opt/couchdb/etc/local.d/10-pi-monger.ini
   notify: Reload couchdb
+- name: Render VM configuration
+  ansible.builtin.template:
+    src: vm.args.j2
+    dest: /opt/couchdb/etc/vm.args
+  notify: Reload couchdb
