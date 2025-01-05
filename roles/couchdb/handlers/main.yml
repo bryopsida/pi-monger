@@ -1,0 +1,8 @@
+---
+- name: Reload couchdb
+  ansible.builtin.systemd:
+    name: couchdb
+    state: restarted
+    enabled: true
+    daemon_reload: true
+    masked: false

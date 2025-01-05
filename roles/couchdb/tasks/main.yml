@@ -7,3 +7,9 @@
   ansible.builtin.package:
     name: couchdb
     state: present
+  notify: Reload couchdb
+- name: Render Configuration
+  ansible.builtin.template:
+    src: pi-monger.ini.j2
+    dest: /opt/couchdb/etc/local.d/10-pi-monger.ini
+  notify: Reload couchdb
