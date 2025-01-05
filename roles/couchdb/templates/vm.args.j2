@@ -121,7 +121,7 @@
 # When the mode is successfully enabled "Welcome" message should show `fips`
 # in the features list.
 #
--crypto fips_mode {{ couchdb_fips_mode }}
+-crypto fips_mode {{ couchdb_fips_mode | string | lower }}
 -kernel inet_dist_listen_min {{ couchdb_dist_min_port }}
 -kernel inet_dist_listen_max {{ couchdb_dist_max_port }}
 

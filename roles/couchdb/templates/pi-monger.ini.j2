@@ -8,7 +8,7 @@
 ;max_document_size = 4294967296 ; bytes
 ;os_process_timeout = 5000
 uuid = {{ couchdb_uuid }}
-single_node = {{ couchdb_single_node }}
+single_node = {{ couchdb_single_node | string | lower }}
 
 {% if not couchdb_single_node %}
 
@@ -108,3 +108,7 @@ bind_address = {{ couchdb_bind_address }}
 ; changing this.
 [admins]
 admin = {{ couchdb_admin_password_hash }}
+
+[log]
+writer = {{ couchdb_log_writer }}
+level = {{ couchdb_log_level }}

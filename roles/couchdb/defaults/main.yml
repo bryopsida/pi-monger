@@ -12,3 +12,5 @@ couchdb_dist_min_port: 9100
 couchdb_dist_max_port: 9200
 couchdb_fips_mode: false
 # couchdb_admin_password_has: -pbkdf2 hash string
+couchdb_log_writer: journald
+couchdb_log_level: info
