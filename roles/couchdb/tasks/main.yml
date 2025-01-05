@@ -18,3 +18,9 @@
     src: vm.args.j2
     dest: /opt/couchdb/etc/vm.args
   notify: Reload couchdb
+- name: Ensure /var/run/couchdb exists
+  ansible.builtin.file:
+    user: couchdb
+    group: couchdb
+    state: directory
+    mode: '0750'
