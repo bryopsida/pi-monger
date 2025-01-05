@@ -12,8 +12,13 @@
     repo: "deb [signed-by={{couchdb_signing_key.dest }}] https://apache.jfrog.io/artifactory/couchdb-deb/ {{ ansible_distribution_release }} main"
     state: present
     filename: 'couchdb'
+- name: Set CouchDB mode
+  ansible.builtin.debconf:
+    name: couchdb
+    question: couchdb/mode
+    value: none
+    vtype: select
 - name: Install CouchDB
   ansible.builtin.apt:
     name: couchdb
-    state: present
-    # dpkg_options: 
+    state: latest
