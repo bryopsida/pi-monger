@@ -1,6 +1,6 @@
 roles:
   - name: newrelic.newrelic_install
-    version: v0.7.1
+    version: v0.7.2
 collections:
   - name: ansible.windows
   - name: ansible.utils
