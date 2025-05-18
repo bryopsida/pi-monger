@@ -1,0 +1,12 @@
+---
+- name: Check if {{ item }} exists
+  register: file_stat
+  ansible.builtin.stat:
+    path: /opt/{{ uptime_kuma_org }}/uptime-kuma/{{ item }}
+- name: Remove immutable attribute to {{ item }}
+  become: true
+  when: file_stat.stat.exists
+  ansible.builtin.file:
+    path: /opt/{{ uptime_kuma_org }}/uptime-kuma/{{ item }}
+    attributes: '-i'
+    recurse: "{{ file_stat.stat.isdir }}"

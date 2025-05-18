@@ -1,0 +1,4 @@
+---
+- name: Remove immutable attribute
+  ansible.builtin.include_tasks: remove-immutable.yml
+  with_items: "{{ uptime_kuma_immutable_files}}"

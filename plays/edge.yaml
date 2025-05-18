@@ -12,6 +12,8 @@
       when: couchdb_enabled
     - role: node-red
       when: node_red_enabled
+    - role: uptime-kuma
+      when: uptime_kuma_enabled
     - role: cloudflared
       when: cloudflared_enabled
     - role: newrelic

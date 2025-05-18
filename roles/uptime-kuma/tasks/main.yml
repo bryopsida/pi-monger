@@ -1,0 +1,32 @@
+---
+- name: Remove immutable attribute
+  ansible.builtin.include_tasks: remove-immutable-to-files.yml
+
+- name: Create uptime-kuma group
+  ansible.builtin.group:
+    name: uptime-kuma
+    gid: "{{ uptime_kuma_gid }}"
+
+- name: Create uptime-kuma user
+  ansible.builtin.user:
+    name: uptime-kuma
+    uid: "{{ uptime_kuma_uid }}"
+    group: uptime-kuma
+    shell: /usr/sbin/nologin
+
+- name: Create /opt/{{ uptime_kuma_org }} directory
+  ansible.builtin.file:
+    path: /opt/{{ uptime_kuma_org }}
+    state: directory
+    owner: "{{ uptime_kuma_uid }}"
+    group: "{{ uptime_kuma_gid }}"
+    mode: '0755'
+
+- name: Create /opt/{{ uptime_kuma_org }}/uptime-kuma directory
+  ansible.builtin.file:
+    path: /opt/{{ uptime_kuma_org }}/uptime-kuma
+    state: directory
+    owner: "{{ uptime_kuma_uid }}"
+    group: "{{ uptime_kuma_gid }}"
+    mode: '0750'
+

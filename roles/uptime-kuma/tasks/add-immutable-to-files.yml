@@ -1,0 +1,4 @@
+---
+- name: Add immutable attribute
+  ansible.builtin.include_tasks: add-immutable.yml
+  with_items: "{{ uptime_kuma_immutable_files}}"
