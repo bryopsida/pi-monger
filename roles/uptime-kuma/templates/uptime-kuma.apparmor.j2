@@ -20,8 +20,9 @@
 
   /etc/ssl/openssl.cnf r,
   /opt/{{ uptime_kuma_org }}/uptime-kuma/** r,
-  /opt/{{ uptime_kuma_org }}/uptime-kuma/data rw,
-  /opt/{{ uptime_kuma_org }}/uptime-kuma/data/** rw,
+  /opt/{{ uptime_kuma_org }}/uptime-kuma rwk,
+  /opt/{{ uptime_kuma_org }}/uptime-kuma/data rwk,
+  /opt/{{ uptime_kuma_org }}/uptime-kuma/data/** rwk,
 
   /proc/** r,
   /sys/devices/system/cpu/** r,
