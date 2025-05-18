@@ -37,8 +37,9 @@
     repo: "{{ uptime_kuma_repo }}"
     dest: /opt/{{ uptime_kuma_org }}/uptime-kuma
     version: "{{ uptime_kuma_version }}"
-  notify: Install node modules
-
+  notify:
+    - Install node modules
+    - Download Dist
 
 - name: Copy apparmor profile to /etc/apparmor.d
   notify: Reload apparmor
