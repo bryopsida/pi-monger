@@ -1,0 +1,14 @@
+[Unit]
+Description=Uptime-Kuma
+After=network.target
+
+[Service]
+ExecStart=/opt/{{ uptime_kuma_org }}/uptime-kuma/server/server.js
+WorkingDirectory=/opt/{{ uptime_kuma_org }}/uptime-kuma
+User={{ uptime_kuma_uid }}
+Group={{ uptime_kuma_gid }}
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

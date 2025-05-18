@@ -5,3 +5,5 @@ uptime_kuma_enabled: false
 uptime_kuma_immutable_files:
   - package.json
   - package-lock.json
+uptime_kuma_version: 1.23.16
+uptime_kuma_repo: https://github.com/louislam/uptime-kuma.git
